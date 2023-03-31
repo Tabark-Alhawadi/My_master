@@ -1,117 +1,67 @@
+<link rel="stylesheet" href="{{URL::asset('adminbackend\css\user_profile.css')}}">
 @extends('admin.admin_dashboard')
+
 @section('admin')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
-<div class="page-content"> 
-    <!--breadcrumb-->
-    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Admin Change Password</div>
-        <div class="ps-3">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0 p-0">
-                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Change Password</li>
-                </ol>
-            </nav>
-        </div>
-        <div class="ms-auto">
-  
-        </div>
-    </div>
-    <!--end breadcrumb-->
-    <div class="container">
-        <div class="main-body">
+    <div class="page-content">
+        <div class="container-fluid mt--7">
             <div class="row">
-             
-                <div class="col-lg-12">
-                    <div class="card">
+            
+                <div class="col-xl-12 order-xl-1">
+                    <div id="edit">
                         <div class="card-body">
+                            <form method="post" action="{{route('update.password')}}">
+                                @csrf
 
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{session('status')}}
+                                    </div>
+                                @elseif (session('error'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{session('error')}}
+                                    </div>
+                                @endif
 
-                            <form method="post" action="{{route('update.password')}}" >
-
-                            @csrf
-
-                            @if (session('status'))
-                            <div class="alert alert-success" role=alert>
-                                {{session('status')}}
-                            </div>                           
-                            @elseif(session('error'))
-                            <div class="alert alert-danger" role=alert>
-                                {{session('error')}}
-                            </div>
-                            @endif
-
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Old Password</h6>
+                                <h4>Change Password</h4>
+                                <hr class="my-4">
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label">Old Password</label>
+                                                <input type="password" name="old_password" id="current_password"  placeholder="***********" class="form-control padding form-control-alternative @error('old_password') is-invalid @enderror ">
+                                                @error('old_password')
+                                                   <span class="text-danger">{{ $message }}</span> 
+                                                @enderror
+                                            </div>
+                                            <div class="form-group focused">
+                                                <label class="form-control-label">New Password</label>
+                                                <input type="password" name="new_password" id="new_password"  placeholder="***********" class="form-control padding form-control-alternative @error('new_password') is-invalid @enderror ">
+                                                @error('new_password')
+                                                   <span class="text-danger">{{ $message }}</span> 
+                                                @enderror
+                                            </div>
+                                            <div class="form-group focused">
+                                                <label class="form-control-label">Confirm New Password</label>
+                                                <input type="password" id="new_password_confirmation" name="new_password_confirmation" placeholder="***********" class="form-control padding form-control-alternative">
+                                            </div> 
+                                            <div class="form-group focused">
+                                                <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="password" name="old_pass" class="form-control @error('old_pass') is-invalid @enderror" id=
-                                    current_password  placeholder="old password"/>
-                                    @error('old_pass')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">New Password</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="password" name="new_pass" class="form-control @error('new_pass') is-invalid @enderror" id=
-                                    new_pass  placeholder="new password"/>
-                                    @error('new_pass')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Confirm New Password</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="password" name="confirm_pass" class="form-control @error('confirm_pass') is-invalid @enderror" id=
-                                    confirm_pass  placeholder="confirm new password"/>
-                                    @error('confirm_pass')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                           
-
-
-
-                            <div class="row">
-                                <div class="col-sm-3"></div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
-                                </div>
-                            </div>
+               
+                            </form>
                         </div>
-
-                        </form>
-
-
-
                     </div>
-                  
-                </div>
+                </div> 
             </div>
-        </div>
-    </div>
-</div>
-
-
+        </div>    
+    </div>   
 
 
 @endsection

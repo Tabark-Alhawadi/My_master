@@ -62,7 +62,6 @@
 
                             <form method="post" action="{{route('admin.profile.store')}}" enctype="multipart/form-data">
                             {{---use multipart/form-data when your form includes any <input type="file"> elements---}}
-
                             @csrf
 
                             <div class="row mb-3">

@@ -17,7 +17,7 @@ class AdminController extends Controller
 
     public function AdminLogin(){
         return view('admin.admin_login');
-    }
+    }//End Method
 
     public function AdminDestroy(Request $request): RedirectResponse
     {
@@ -76,19 +76,19 @@ class AdminController extends Controller
     public function AdminUpdatePassword(Request $request){
     //Validation
         $request->validate([
-            'old_pass' => 'required',
-            'new_pass' => 'required|confirmed',
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
         ]);
 
         //Match pass
-        if(!Hash::check($request->old_pass, auth::user()->password)){
+        if(!Hash::check($request->old_password, auth::user()->password)){
             return back()->with("error","Old password does not match!!");
         }
 
         //update the new password
         User::whereId(auth()->user()->id)->update([
 
-            'password' => Hash::make($request->new_pass)
+            'password' => Hash::make($request->new_password)
         ]);
         return back()->with("status"," Password Change Successfully");
         }//End Method

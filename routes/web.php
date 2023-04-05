@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +63,30 @@ Route::get('/vendor/change/password',[VendorController::class, 'VendorChangePass
 Route::post('/vendor/update/password',[VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
 
 });
+
+Route::middleware(['auth','role:admin'])->group(function(){
+
+////Category All Route
+Route::controller(CategoryController::class)->group(function(){
+    Route::get('/all/category','AllCategory')->name('all.category');
+    Route::get('/add/category','AddCategory')->name('add.category');
+    Route::post('/store/category','StoreCategory')->name('store.category');
+    Route::get('/edit/category/{id}','EditCategory')->name('edit.category');
+    Route::post('/update/category','UpdateCategory')->name('update.category');
+    Route::get('/delete/category/{id}','DeleteCategory')->name('delete.category');
+});
+
+
+////Category All Route
+Route::controller(SubCategoryController::class)->group(function(){
+    Route::get('/all/subcategory','AllSubCategory')->name('all.subcategory');
+    Route::get('/add/subcategory','AddSubCategory')->name('add.subcategory');
+    Route::post('/store/subcategory','StoreSubCategory')->name('store.subcategory');
+    Route::get('/edit/category/{id}','EditCategory')->name('edit.category');
+    Route::post('/update/category','UpdateCategory')->name('update.category');
+    Route::get('/delete/category/{id}','DeleteCategory')->name('delete.category');
+});
+}); // End Middleware
 
 Route::get('/admin/login',[AdminController::class, 'AdminLogin']);
 Route::get('/vendor/login',[VendorController::class, 'VendorLogin']);

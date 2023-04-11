@@ -64,11 +64,11 @@ class VendorController extends Controller
    //The function GetClientOriginalName() is used to retrieve the file's original name at the time of upload in laravel and that'll only be possible if the data is sent as array and not as a string
         $data->save();
 
-        $nitification = array(
+        $notification = array(
             'message' => 'Vendor Profile Updated Successfully',
             'alert-type' => 'success'
         );
-        return redirect()->back()->with($nitification);
+        return redirect()->back()->with($notification);
 
     }//End Method
 
@@ -97,5 +97,41 @@ class VendorController extends Controller
                 'password' => Hash::make($request->new_password)
             ]);
             return back()->with("status"," Password Change Successfully");
-            }//End Method
+    } //End Method
+
+
+    public function BecomeVendor(){
+        
+        return view('auth.bacome_vendor');
+
+    } //End Method
+
+
+    public function VendorRegister(Request $request): RedirectResponse{
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        $user = User::insert([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'vendor_join' => $request->vendor_join,
+            'password' => Hash::make($request->password),
+            'role' => 'vendor',
+            'status' => 'inactive',
+
+        ]);
+
+        $notification = array(
+            'message' => 'Vendor Registerd Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('vendor.login')->with($notification);
+
+    } //End Method
 }

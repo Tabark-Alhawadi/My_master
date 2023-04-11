@@ -91,5 +91,25 @@ class AdminController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
         return back()->with("status"," Password Change Successfully");
-        }//End Method
+    }//End Method
+
+
+    public function InactiveVendor(){
+
+        $inActiveVendor = User::where('status','inactive')->where('role','vendor')->latest()->get();
+
+        return view('backend.vendor.inactive_vendor',compact('inActiveVendor'));
+
+    }//End Method
+
+
+    public function ActiveVendor(){
+
+        $ActiveVendor = User::where('status','active')->where('role','vendor')->latest()->get();
+
+        return view('backend.vendor.active_vendor',compact('ActiveVendor'));
+
+    }//End Method
+
+
 }

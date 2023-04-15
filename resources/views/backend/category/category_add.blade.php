@@ -34,7 +34,7 @@
                         <div class="card-body">
 
 
-                            <form id="my_Form" method="post" action="{{route('store.category')}}" enctype="multipart/form-data">
+                            <form id="myForm" method="post" action="{{route('store.category')}}" enctype="multipart/form-data">
                             {{---use multipart/form-data when your form includes any <input type="file"> elements---}}
                             @csrf
 
@@ -56,7 +56,7 @@
                                     <h6 class="mb-0">Category Image</h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
-                                    <input type="file" name="category_image" class="form-control" id="image"/>
+                                    <input type="file" name="category_image" class="form-control" id="image" required=""/>
                                 </div>
                             </div>
 

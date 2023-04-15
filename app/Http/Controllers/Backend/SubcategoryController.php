@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 
 
+
 class SubcategoryController extends Controller
 {
     public function AllSubCategory(){
@@ -42,7 +43,7 @@ class SubcategoryController extends Controller
     public function EditSubCategory($id){
 
         $categoties = Category::orderBy('category_name','ASC')->get();
-        $subcategory = EditSubCategory::findOrFail($id);
+        $subcategory = SubCategory::findOrFail($id);
         return view('backend.subcategory.subcategory_edit',compact('categoties','subcategory'));
 
     } //End Method

@@ -37,13 +37,15 @@
                             <form id="my_Form" method="post" action="{{route('store.subcategory')}}" >
                             @csrf
 
+                 
+
                          
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0"> Category Name</h6>
                                 </div>
-                                <div name="category_id" class="form-group col-sm-9 text-secondary">
-                                    <select class="form-select mb-3" aria-label="Default select example">
+                                <div  class="form-group col-sm-9 text-secondary">
+                                    <select name="category_id" class="form-select mb-3" aria-label="Default select example">
                                         <option selected="">Open this select menu</option>
                                         @foreach ($categoties as $category)
                                               <option value="{{ $category->id }}">{{ $category->category_name }}</option>

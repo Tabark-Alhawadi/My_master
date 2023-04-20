@@ -6,18 +6,22 @@
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">All Active Vendor</div>
+        <div class="breadcrumb-title pe-3">All Slider</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Active Vendor</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Slider</li>
                 </ol>
             </nav>
         </div>
         <div class="ms-auto">
-            <div class="btn-group">  
+            <div class="btn-group">
+                <a href="{{ route('add.slider') }}" class="btn btn-primary">Add Slider</a>
+
+                
+               
             </div>
         </div>
     </div>
@@ -31,27 +35,25 @@
                     <thead>
                         <tr>
                             <th>SI</th>
-                            <th>service Name</th>
-                            <th>Vendor UserName</th>
-                            <th>Join Date</th>
-                            <th>Vendor email</th>
-                            <th>status</th>
+                            <th>Slider Title</th>
+                            <th>Short Title</th>
+                            <th>Slider Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($ActiveVendor as $key => $item)
+                        @foreach ($sliders as $key => $item)
                             
                        
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->username }}</td>
-                            <td>{{ $item->vendor_join }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td> <span class="btn btn-success">{{ $item->status }}</span> </td>
+                            <td>{{ $item->slider_title }}</td>
+                            <td>{{ $item->short_title }}</td>
+                            <td><img src="{{ asset($item->slider_image) }}" style="width: 70px; height:40px;"> </td>
                             <td>
-                                <a href="{{ route('active.vendor.details',$item->id) }}" class="btn btn-info">Vendor Details</a>
+                                <a href="{{ route('edit.slider',$item->id) }}" class="btn btn-info">Edit</a>
+                                <a href="{{ route('delete.slider',$item->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                
                             </td>
                         </tr>
                         @endforeach
@@ -59,11 +61,9 @@
                     <tfoot>
                         <tr>
                             <th>SI</th>
-                            <th>service Name</th>
-                            <th>Vendor UserName</th>
-                            <th>Join Date</th>
-                            <th>Vendor email</th>
-                            <th>status</th>
+                            <th>Slider Title</th>
+                            <th>Short Title</th>
+                            <th>Slider Image</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

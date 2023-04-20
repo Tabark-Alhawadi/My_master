@@ -60,7 +60,8 @@ class AdminController extends Controller
         $data->save();
 
         $nitification = array(
-            'message' => 'Admin Profile Updated Successfully','alert-type' => 'success'
+            'message' => 'Admin Profile Updated Successfully',
+            'alert-type' => 'success'
         );
         return redirect()->back()->with($nitification);
 
@@ -120,4 +121,44 @@ class AdminController extends Controller
     }//End Method
 
 
+    public function ActiveVendorApprove(Request $request){
+
+        $vendor_id = $request->id;
+        $user = User::findOrFail($vendor_id)->update([
+            'status' => 'active',
+        ]);
+
+        $nitification = array(
+            'message' => 'Vendor Active Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('active.vendor')->with($nitification);
+
+    }//End Method
+
+
+    public function ActiveVendorDetails($id){
+
+        $activeVendorDetails = User::findOrFail($id);
+        return view('backend.vendor.active_vendor_details',compact('activeVendorDetails'));
+
+    }//End Method
+
+
+    public function InactiveVendorApprove(Request $request){
+
+        $vendor_id = $request->id;
+        $user = User::findOrFail($vendor_id)->update([
+            'status' => 'inactive',
+        ]);
+
+        $nitification = array(
+            'message' => 'Vendor Inactive Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('inactive.vendor')->with($nitification);
+
+    }//End Method
 }

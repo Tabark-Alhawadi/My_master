@@ -98,10 +98,11 @@
         </div>
     </div>
 </section> --}}
-
+@include('frontend.home.home_features_category')
+<!--End category slider-->
 
 <!--End category slider-->
-@include('frontend.home.home_banner')
+{{-- @include('frontend.home.home_banner') --}}
 
 <!--End banners-->
 

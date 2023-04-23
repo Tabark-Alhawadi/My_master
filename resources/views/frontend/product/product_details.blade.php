@@ -66,13 +66,13 @@
 
                                       
                                         @if ($product->discount_price == NULL)
-                                            <span class="current-price text-brand">${{$product->selling_price}}</span>
+                                            <span class="current-price text-brand">{{$product->selling_price}}JD</span>
                                         @else
 
-                                            <span class="current-price text-brand">${{$product->discount_price}}</span>
+                                            <span class="current-price text-brand">{{$product->discount_price}}JD</span>
                                             <span>
                                                 <span class="save-price font-md color3 ml-15">{{round($discount)}}% Off</span>
-                                                <span class="old-price font-md ml-15">${{$product->selling_price}}</span>
+                                                <span class="old-price font-md ml-15">{{$product->selling_price}}JD</span>
                                             </span>
                                         @endif
                                        
@@ -129,7 +129,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
                                 </li>
-                                
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
                                 </li>
@@ -230,7 +232,52 @@
                                         </tbody>
                                     </table>
                                 </div>
-                               
+
+
+
+                                <div class="tab-pane fade" id="Vendor-info">
+                                    <div class="vendor-logo d-flex mb-30">
+                                        <img src="{{ (!empty($product->vendor->photo)) ? url('upload/vendor_images/'.$product->vendor->photo):url('upload/no_image.jpg')}}" alt="" />
+                                        <div class="vendor-name ml-15">
+                                            @if ($product->vendor_id == NULL)
+                                            <h6>
+                                                <a href="vendor-details-2.html">Owner</a>
+                                            </h6>
+                                                @else
+                                            <h6>
+                                                <a href="vendor-details-2.html">{{$product['vendor']['name']}}</a>
+                                            </h6>
+                                            @endif
+                                            
+                                            <div class="product-rate-cover text-end">
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 90%"></div>
+                                                </div>
+                                                <span class="font-small ml-5 text-muted"> (32 reviews)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @if ($product->vendor_id == NULL)
+                                      <ul class="contact-infor mb-50">
+                                          <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address: </strong> <span>Null</span></li>
+                                          <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Contact Seller:</strong><span>Admin</span></li>
+                                      </ul>
+                                    @else                                    
+                                      <ul class="contact-infor mb-50">
+                                          <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address: </strong> <span>{{$product['vendor']['address']}}</span></li>
+                                          <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Contact Seller:</strong><span>{{$product['vendor']['phone']}}</span></li>
+                                      </ul>
+                                    @endif
+
+                                    @if ($product->vendor_id == NULL)
+                                    <p>Owner Information</p>
+                                        @else
+                                    <p>{{$product['vendor']['vendor_short_info']}}</p>
+                                    @endif
+                                </div>
+
+
                                 <div class="tab-pane fade" id="Reviews">
                                     <!--Comments-->
                                     <div class="comments-area">
@@ -412,12 +459,12 @@
                                                
                                                 @if ($product->discount_price == NULL)
                                                     <div class="product-price">
-                                                        <span>${{$product->selling_price}}</span>
+                                                        <span>{{$product->selling_price}}JD</span>
                                                     </div>
                                                 @else
                                                     <div class="product-price">
-                                                        <span>${{$product->discount_price}}</span>
-                                                        <span class="old-price">${{$product->selling_price}}</span>
+                                                        <span>{{$product->discount_price}}JD</span>
+                                                        <span class="old-price">{{$product->selling_price}}JD</span>
                                                     </div>
                                                 @endif
                                             </div>

@@ -12,6 +12,14 @@ use App\Http\middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\CartController; 
+use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\AllUserController;
+use App\Http\Controllers\Frontend\ContactController; 
+use App\Http\Controllers\User\ReviewController;
+use App\Http\Controllers\Backend\OrderController;
+
+
 
 
 /*
@@ -25,9 +33,9 @@ use App\Http\Controllers\Frontend\IndexController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+
+Route::get('/',[IndexController::class,'Index'])->name('home');
+
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard',[UserController::class, 'UserDashboard'])->name('dashboard');
@@ -162,6 +170,35 @@ Route::controller(SliderController::class)->group(function(){
 });
 
 
+Route::controller(ContactController::class)->group(function(){
+       
+    Route::get('/all/message','AllMessage')->name('all.message');
+    Route::get('/delete/message/{id}','DeleteMessage')->name('delete.message');
+    Route::get('/reply/message/{id}','ReplyMessage')->name('reply.message');
+    Route::post('/store/replymessage/','StoreReplyMessage')->name('store.replymessage');
+
+    Route::get('/all/replymessage/','AllReplyMessage')->name('all.replymessage');
+    Route::get('/delete/replymessage/{id}','DeleteReplyMessage')->name('delete.replymessage');
+
+
+});
+
+
+Route::controller(OrderController::class)->group(function(){
+    
+    Route::get('/pending/order','PendingOrder')->name('pending.order');
+    Route::get('/admin/order/details/{order_id}','AdminOrderDetails')->name('admin.order.details');
+
+    Route::get('/admin/delivered/order' , 'AdminDeliveredOrder')->name('admin.delivered.order');
+
+    Route::get('/processing/delivered/{order_id}' , 'ProcessToDelivered')->name('processing-delivered');
+
+    Route::get('/admin/invoice/download/{order_id}' , 'AdminInvoiceDownload')->name('admin.invoice.download');
+  
+
+});
+
+
 
 }); // End Admin Middleware
 
@@ -181,4 +218,74 @@ Route::get('product/subcategory/{id}/{slug}',[IndexController::class,'SubCatWise
 
 
 /// frontend category 
+
+
+
+Route::middleware(['auth','role:user'])->group(function(){
+
+    Route::controller(CartController::class)->group(function(){
+
+        // add to cart store data 
+        Route::post('/cart/data/store/{id}/','AddToCart');
+        
+        // view cart details
+        Route::get('/mycart','MyCart')->name('mycart');
+
+        Route::get('/delete/cart/{id}','DeleteCart')->name('delete.cart');
+
+        // checkout page route
+        Route::get('/checkout/{AllTotal}','CheckoutCreate')->name('checkout');
+
+    });
+
+
+    Route::controller(StripeController::class)->group(function(){
+        Route::post('/stripe/order' , 'StripeOrder')->name('stripe.order');
+        Route::post('/cash/order' , 'CashOrder')->name('cash.order');
+    
+
+    }); 
+
+
+    Route::controller(AllUserController::class)->group(function(){
+
+        Route::get('/user/account/page','UserAccount')->name('user.account.page');
+        
+        Route::get('/user/change/password','UserChangePassword')->name('user.change.password');
+        
+        Route::get('/user/order/page','UserOrderPage')->name('user.order.page');
+        
+        Route::get('/reply/page','ReplyMessagePage')->name('reply.message.page');
+        
+        Route::get('/user/order_details/{order_id}','UserOrderDetails');
+        
+        Route::get('/user/invoice_download/{order_id}','UserOrderInvoice');
+
+    });
+
+
+}); // End Middleware
+
+
+Route::controller(IndexController::class)->group(function(){
+        
+    Route::get('/user/shop/page','ShopPage')->name('user.shop.page');
+
+    Route::get('/user/contact/page','ContactPage')->name('user.contact.page');
+
+    Route::post('/store/contact','StoreContact')->name('store.contact');
+
+    Route::post('/search' , 'ProductSearch')->name('product.search'); 
+
+});
+
+Route::controller(ReviewController::class)->group(function(){
+
+    Route::post('/store/review' , 'StoreReview')->name('store.review'); 
+    Route::get('/pending/review' , 'PendingReview')->name('pending.review'); 
+    Route::get('/review/approve/{id}' , 'ReviewApprove')->name('review.approve'); 
+    Route::get('/publish/review' , 'PublishReview')->name('publish.review'); 
+    Route::get('/review/delete/{id}' , 'ReviewDelete')->name('review.delete');
+
+});
     

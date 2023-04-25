@@ -74,12 +74,7 @@
                                     <img class="default-img" src="{{ asset($product->product_thambnail) }}" alt="" />
                                 </a>
                             </div>
-                            <div class="product-action-1">
-                                <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                            </div>
-
+                           
                             @php
                                 $amount = $product->selling_price - $product->discount_price;
                                 $discount = ($amount/$product->selling_price) * 100;
@@ -98,11 +93,37 @@
                                 <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                             </div>
                             <h2><a href=" {{url('product/details/'.$product->id.'/'.$product->product_slug)}} ">{{ $product->product_name }}</a></h2>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
+                            <div class="product-detail-rating">
+                                <div class="product-rate-cover text-end">
+            
+                                    @php
+            
+                                    $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+            
+                                    $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                    @endphp
+                                    
+            
+                                    <div class="product-rate d-inline-block">
+                                        @if($avarage == 0)
+                                        
+                                        @elseif($avarage == 1 || $avarage < 2)                     
+                                        <div class="product-rating" style="width: 20%"></div>
+                                        @elseif($avarage == 2 || $avarage < 3)                     
+                                        <div class="product-rating" style="width: 40%"></div>
+                                        @elseif($avarage == 3 || $avarage < 4)                     
+                                        <div class="product-rating" style="width: 60%"></div>
+                                        @elseif($avarage == 4 || $avarage < 5)                     
+                                        <div class="product-rating" style="width: 80%"></div>
+                                        @elseif($avarage == 5 || $avarage < 5)                     
+                                        <div class="product-rating" style="width: 100%"></div>
+                                        @endif
+                                    </div>
+            
+            
+            
+                                    <span class="font-small ml-5 text-muted"> ({{ count($reviewcount)}} reviews)</span>
                                 </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
                             </div>
                             <div>
                                 @if ($product->vendor_id == NULL)
@@ -169,12 +190,12 @@
                         <span class="text-muted">Since {{ $vendor->vendor_join }}</span>
                     </div>
                     <h4 class="mb-5"><a href="vendor-details-1.html" class="text-heading">{{ $vendor->name }}</a></h4>
-                    <div class="product-rate-cover mb-15">
+                    {{-- <div class="product-rate-cover mb-15">
                         <div class="product-rate d-inline-block">
                             <div class="product-rating" style="width: 90%"></div>
                         </div>
                         <span class="font-small ml-5 text-muted"> (4.0)</span>
-                    </div>
+                    </div> --}}
                     <div class="vendor-des mb-30">
                         <p class="font-sm text-heading">{{ $vendor->vendor_short_info }}</p>
                     </div>

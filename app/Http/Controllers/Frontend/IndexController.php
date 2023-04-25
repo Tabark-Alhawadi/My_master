@@ -9,10 +9,23 @@ use App\Models\SubCategory;
 use App\Models\MultiImg;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Contact;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class IndexController extends Controller
 {
+
+    public function Index() {
+
+        $new = Product::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+    
+        return view('frontend.index',compact('new'));
+
+    } // End Method
+
+
     public function ProductDetails($id,$slug){
         $product = Product::findOrFail($id);
  
@@ -65,4 +78,60 @@ class IndexController extends Controller
         return view('frontend.product.subcategory_view',compact('products','categories','breadsubcat','newProduct'));
 
     } // End Method
+
+
+    public function ContactPage() {
+        $user = Auth::user();
+        return view('frontend.page.page_contact',compact('user'));
+
+    }
+
+    public function StoreContact(Request $request) {
+        if (Auth::id()) {
+            Contact::insert([
+                'user_id' => Auth::id(),
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'subject' => $request->subject,
+                'message' => $request->message,
+                'created_at' =>Carbon::now(),
+    
+            ]);
+        } else {
+            Contact::insert([
+                'user_id' => 1,
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'subject' => $request->subject,
+                'message' => $request->message,
+                'created_at' =>Carbon::now(),
+    
+            ]);
+
+        }
+
+        $notification = array(
+            'message' => 'Thank you for message',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    
+    
+    }
+
+
+    public function ProductSearch(Request $request){
+
+        $request->validate(['search' => "required"]);
+
+        $item = $request->search;
+        $categories = Category::orderBy('category_name','ASC')->get();
+        $products = Product::where('product_name','LIKE',"%$item%")->get();
+        $newProduct = Product::orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.product.search',compact('products','item','categories','newProduct'));
+
+    }// End Method 
 }

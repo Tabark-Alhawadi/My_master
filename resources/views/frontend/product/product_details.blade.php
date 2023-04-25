@@ -50,10 +50,34 @@
                                 <h2 class="title-detail">{{$product->product_name}}</h2>
                                 <div class="product-detail-rating">
                                     <div class="product-rate-cover text-end">
+                
+                                        @php
+                
+                                        $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                
+                                        $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                        @endphp
+                                        
+                
                                         <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
+                                            @if($avarage == 0)
+                                            
+                                            @elseif($avarage == 1 || $avarage < 2)                     
+                                            <div class="product-rating" style="width: 20%"></div>
+                                            @elseif($avarage == 2 || $avarage < 3)                     
+                                            <div class="product-rating" style="width: 40%"></div>
+                                            @elseif($avarage == 3 || $avarage < 4)                     
+                                            <div class="product-rating" style="width: 60%"></div>
+                                            @elseif($avarage == 4 || $avarage < 5)                     
+                                            <div class="product-rating" style="width: 80%"></div>
+                                            @elseif($avarage == 5 || $avarage < 5)                     
+                                            <div class="product-rating" style="width: 100%"></div>
+                                            @endif
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> (32 reviews)</span>
+                
+                
+                
+                                        <span class="font-small ml-5 text-muted"> ({{ count($reviewcount)}} reviews)</span>
                                     </div>
                                 </div>
 
@@ -83,7 +107,8 @@
                                 </div>
 
                                
-
+                        <form action="{{url('/cart/data/store/'.$product->id)}}" method="POST">
+                            @csrf
                                 <div class="detail-extralink mb-50">
                                     <div class="detail-qty border radius">
                                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
@@ -96,6 +121,7 @@
                                         <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                     </div>
                                 </div>
+                        </form>
                                
                               
                                     @if ($product->vendor_id == NULL)
@@ -132,8 +158,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
                                 </li>
+                                @php
+                                $reviews = App\Models\Review::where('product_id',$product->id)->latest()->limit(5)->get();
+                            @endphp
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
+                                    <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews ({{count($reviews)}})</a>
                                 </li>
                             </ul>
                             <div class="tab-content shop_info_tab entry-main-content">
@@ -280,138 +309,123 @@
 
                                 <div class="tab-pane fade" id="Reviews">
                                     <!--Comments-->
-                                    <div class="comments-area">
-                                        <div class="row">
-                                            <div class="col-lg-8">
-                                                <h4 class="mb-30">Customer questions & answers</h4>
-                                                <div class="comment-list">
+                                <div class="comments-area">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <h4 class="mb-30">Customer questions & answers</h4>
+                                            <div class="comment-list">
+                                               
+                            
+                                                @foreach($reviews as $item)
+                                                    
+                                                    @if($item->status == 0)
+                            
+                                                    @else 
+                            
                                                     <div class="single-comment justify-content-between d-flex mb-30">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-2.png" alt="" />
-                                                                <a href="#" class="font-heading text-brand">Sienna</a>
+                                                                <img src="{{ (!empty($item->user->photo)) ? url('upload/user_images/'.$item->user->photo):url('upload/no_image.jpg') }}" alt="" />
+                                                                <a href="#" class="font-heading text-brand">{{ $item->user->name }}</a>
                                                             </div>
                                                             <div class="desc">
                                                                 <div class="d-flex justify-content-between mb-10">
                                                                     <div class="d-flex align-items-center">
-                                                                        <span class="font-xs text-muted">December 4, 2022 at 3:12 pm </span>
+                                                                        <span class="font-xs text-muted"> {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }} </span>
                                                                     </div>
+                                                                    
                                                                     <div class="product-rate d-inline-block">
-                                                                        <div class="product-rating" style="width: 100%"></div>
+                            
+                                                                        @if($item->rating == NULL)
+                                                                            @elseif($item->rating == 1)
+                                                                            <div class="product-rating" style="width: 20%"></div>
+                                                                            @elseif($item->rating == 2)
+                                                                            <div class="product-rating" style="width: 40%"></div>
+                                                                            @elseif($item->rating == 3)
+                                                                            <div class="product-rating" style="width: 60%"></div>
+                                                                            @elseif($item->rating == 4)
+                                                                            <div class="product-rating" style="width: 80%"></div>
+                                                                            @elseif($item->rating == 5)
+                                                                            <div class="product-rating" style="width: 100%"></div>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
-                                                                <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
+                                                                <p class="mb-10">{{ $item->comment }} </p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="single-comment justify-content-between d-flex mb-30 ml-30">
-                                                        <div class="user justify-content-between d-flex">
-                                                            <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-3.png" alt="" />
-                                                                <a href="#" class="font-heading text-brand">Brenna</a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="d-flex justify-content-between mb-10">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <span class="font-xs text-muted">December 4, 2022 at 3:12 pm </span>
-                                                                    </div>
-                                                                    <div class="product-rate d-inline-block">
-                                                                        <div class="product-rating" style="width: 80%"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-comment justify-content-between d-flex">
-                                                        <div class="user justify-content-between d-flex">
-                                                            <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-4.png" alt="" />
-                                                                <a href="#" class="font-heading text-brand">Gemma</a>
-                                                            </div>
-                                                            <div class="desc">
-                                                                <div class="d-flex justify-content-between mb-10">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <span class="font-xs text-muted">December 4, 2022 at 3:12 pm </span>
-                                                                    </div>
-                                                                    <div class="product-rate d-inline-block">
-                                                                        <div class="product-rating" style="width: 80%"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <h4 class="mb-30">Customer reviews</h4>
-                                                <div class="d-flex mb-30">
-                                                    <div class="product-rate d-inline-block mr-15">
-                                                        <div class="product-rating" style="width: 90%"></div>
-                                                    </div>
-                                                    <h6>4.8 out of 5</h6>
-                                                </div>
-                                                <div class="progress">
-                                                    <span>5 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-                                                </div>
-                                                <div class="progress">
-                                                    <span>4 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                                                </div>
-                                                <div class="progress">
-                                                    <span>3 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
-                                                </div>
-                                                <div class="progress">
-                                                    <span>2 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
-                                                </div>
-                                                <div class="progress mb-30">
-                                                    <span>1 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
-                                                </div>
-                                                <a href="#" class="font-xs text-muted">How are ratings calculated?</a>
+                            
+                                                    @endif
+                            
+                            
+                                                @endforeach
+                                                
+                                                
                                             </div>
                                         </div>
                                     </div>
-                                    <!--comment form-->
-                                    <div class="comment-form">
-                                        <h4 class="mb-15">Add a review</h4>
-                                        <div class="product-rate d-inline-block mb-30"></div>
+                                </div>
+                                <!--comment form-->
+
+                                <div class="comment-form">
+                                    <h4 class="mb-15">Add a review</h4>
+                                    @guest
+                                        <p> <b>For Add Product Review. You Need To Login First <a
+                                                    href="{{ route('login')}}">Login Here </a> </b></p>
+                                    @else
                                         <div class="row">
                                             <div class="col-lg-8 col-md-12">
-                                                <form class="form-contact comment_form" action="#" id="commentForm">
+                                                <form class="form-contact comment_form" action="{{ route('store.review') }}" method="post" id="commentForm">
+                                                    @csrf
+
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+
                                                     <div class="row">
+                                                        <table class="table" style=" width: 60%;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="cell-level">&nbsp;</th>
+                                                                    <th>1 star</th>
+                                                                    <th>2 star</th>
+                                                                    <th>3 star</th>
+                                                                    <th>4 star</th>
+                                                                    <th>5 star</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    
+                                                                    
+                                                                    <td class="cell-level">Quality</td>
+                                                                    <td><input type="radio" name="quality" class="radio-sm"
+                                                                            value="1"></td>
+                                                                    <td><input type="radio" name="quality" class="radio-sm"
+                                                                            value="2"></td>
+                                                                    <td><input type="radio" name="quality" class="radio-sm"
+                                                                            value="3"></td>
+                                                                    <td><input type="radio" name="quality" class="radio-sm"
+                                                                            value="4"></td>
+                                                                    <td><input type="radio" name="quality" class="radio-sm"
+                                                                            value="5"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
                                                         <div class="col-12">
                                                             <div class="form-group">
-                                                                <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="name" id="name" type="text" placeholder="Name" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="email" id="email" type="email" placeholder="Email" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="website" id="website" type="text" placeholder="Website" />
+                                                                <textarea class="form-control w-100" required name="comment" id="comment"
+                                                                    cols="30" rows="9" placeholder="Write Comment"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="submit" class="button button-contactForm">Submit Review</button>
+                                                        <button type="submit" class="button button-contactForm">Submit
+                                                            Review</button>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endguest
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -453,8 +467,37 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <h2><a href="{{url('product/details/'.$product->id.'/'.$product->product_slug)}}" tabindex="0">{{$product->product_name}}</a></h2>
-                                                <div class="rating-result" title="90%">
-                                                    <span> </span>
+                                                <div class="product-detail-rating">
+                                                    <div class="product-rate-cover text-end">
+                                
+                                                        @php
+                                
+                                                        $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                                
+                                                        $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                                        @endphp
+                                                        
+                                
+                                                        <div class="product-rate d-inline-block">
+                                                            @if($avarage == 0)
+                                                            
+                                                            @elseif($avarage == 1 || $avarage < 2)                     
+                                                            <div class="product-rating" style="width: 20%"></div>
+                                                            @elseif($avarage == 2 || $avarage < 3)                     
+                                                            <div class="product-rating" style="width: 40%"></div>
+                                                            @elseif($avarage == 3 || $avarage < 4)                     
+                                                            <div class="product-rating" style="width: 60%"></div>
+                                                            @elseif($avarage == 4 || $avarage < 5)                     
+                                                            <div class="product-rating" style="width: 80%"></div>
+                                                            @elseif($avarage == 5 || $avarage < 5)                     
+                                                            <div class="product-rating" style="width: 100%"></div>
+                                                            @endif
+                                                        </div>
+                                
+                                
+                                
+                                                        <span class="font-small ml-5 text-muted"> ({{ count($reviewcount)}} reviews)</span>
+                                                    </div>
                                                 </div>
                                                
                                                 @if ($product->discount_price == NULL)

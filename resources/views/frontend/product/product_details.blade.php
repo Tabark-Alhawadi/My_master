@@ -95,7 +95,7 @@
 
                                             <span class="current-price text-brand">{{$product->discount_price}}JD</span>
                                             <span>
-                                                <span class="save-price font-md color3 ml-15">{{round($discount)}}% Off</span>
+                                                <span class="save-price font-md ml-15" style="color: #24012f">{{round($discount)}}% Off</span>
                                                 <span class="old-price font-md ml-15">{{$product->selling_price}}JD</span>
                                             </span>
                                         @endif
@@ -110,24 +110,18 @@
                         <form action="{{url('/cart/data/store/'.$product->id)}}" method="POST">
                             @csrf
                                 <div class="detail-extralink mb-50">
-                                    <div class="detail-qty border radius">
-                                        <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                        <input type="text" name="quantity" class="qty-val" value="1" min="1">
-                                        <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                    </div>
+                                    
                                     <div class="product-extra-link2">
                                         <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                        <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                     </div>
                                 </div>
                         </form>
                                
                               
                                     @if ($product->vendor_id == NULL)
-                                    <h6 >By <span class="text-danger">Owner</span></h6>                    
+                                    <h6 >By <span style="color:#8067A9">Owner</span></h6>                    
                                       @else
-                                    <h6 >By <span class="text-danger">{{ $product['vendor']['name'] }}</span></h6>
+                                    <h6 >By <span style="color:#8067A9">{{ $product['vendor']['name'] }}</span></h6>
                                   @endif
                          
                                 <div class="font-xs">
@@ -152,9 +146,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
-                                </li>
+                               
                                 <li class="nav-item">
                                     <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
                                 </li>
@@ -171,99 +163,7 @@
                                         <p>{!! $product->long_descp !!}</p>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="Additional-info">
-                                    <table class="font-md">
-                                        <tbody>
-                                            <tr class="stand-up">
-                                                <th>Stand Up</th>
-                                                <td>
-                                                    <p>35″L x 24″W x 37-45″H(front to back wheel)</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="folded-wo-wheels">
-                                                <th>Folded (w/o wheels)</th>
-                                                <td>
-                                                    <p>32.5″L x 18.5″W x 16.5″H</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="folded-w-wheels">
-                                                <th>Folded (w/ wheels)</th>
-                                                <td>
-                                                    <p>32.5″L x 24″W x 18.5″H</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="door-pass-through">
-                                                <th>Door Pass Through</th>
-                                                <td>
-                                                    <p>24</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="frame">
-                                                <th>Frame</th>
-                                                <td>
-                                                    <p>Aluminum</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="weight-wo-wheels">
-                                                <th>Weight (w/o wheels)</th>
-                                                <td>
-                                                    <p>20 LBS</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="weight-capacity">
-                                                <th>Weight Capacity</th>
-                                                <td>
-                                                    <p>60 LBS</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="width">
-                                                <th>Width</th>
-                                                <td>
-                                                    <p>24″</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="handle-height-ground-to-handle">
-                                                <th>Handle height (ground to handle)</th>
-                                                <td>
-                                                    <p>37-45″</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="wheels">
-                                                <th>Wheels</th>
-                                                <td>
-                                                    <p>12″ air / wide track slick tread</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="seat-back-height">
-                                                <th>Seat back height</th>
-                                                <td>
-                                                    <p>21.5″</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="head-room-inside-canopy">
-                                                <th>Head room (inside canopy)</th>
-                                                <td>
-                                                    <p>25″</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="pa_color">
-                                                <th>Color</th>
-                                                <td>
-                                                    <p>Black, Blue, Red, White</p>
-                                                </td>
-                                            </tr>
-                                            <tr class="pa_size">
-                                                <th>Size</th>
-                                                <td>
-                                                    <p>M, S</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-
-
+                        
                                 <div class="tab-pane fade" id="Vendor-info">
                                     <div class="vendor-logo d-flex mb-30">
                                         <img src="{{ (!empty($product->vendor->photo)) ? url('upload/vendor_images/'.$product->vendor->photo):url('upload/no_image.jpg')}}" alt="" />
@@ -274,15 +174,15 @@
                                             </h6>
                                                 @else
                                             <h6>
-                                                <a href="vendor-details-2.html">{{$product['vendor']['name']}}</a>
+                                                <a href="#">{{$product['vendor']['name']}}</a>
                                             </h6>
                                             @endif
                                             
                                             <div class="product-rate-cover text-end">
-                                                <div class="product-rate d-inline-block">
+                                                {{-- <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 90%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> (32 reviews)</span>
+                                                <span class="font-small ml-5 text-muted"> (({{count($reviews)}}) reviews)</span> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -326,16 +226,20 @@
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
                                                                 <img src="{{ (!empty($item->user->photo)) ? url('upload/user_images/'.$item->user->photo):url('upload/no_image.jpg') }}" alt="" />
-                                                                <a href="#" class="font-heading text-brand">{{ $item->user->name }}</a>
+                                                              
                                                             </div>
                                                             <div class="desc">
                                                                 <div class="d-flex justify-content-between mb-10">
+                                                                    <div >
+                                                                         <a  class="font-heading text-brand">{{ $item->user->name }}</a>
+                                                                    </div>
+                                                                    
                                                                     <div class="d-flex align-items-center">
+                                                                       
                                                                         <span class="font-xs text-muted"> {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }} </span>
                                                                     </div>
                                                                     
                                                                     <div class="product-rate d-inline-block">
-                            
                                                                         @if($item->rating == NULL)
                                                                             @elseif($item->rating == 1)
                                                                             <div class="product-rating" style="width: 20%"></div>
@@ -350,7 +254,7 @@
                                                                         @endif
                                                                     </div>
                                                                 </div>
-                                                                <p class="mb-10">{{ $item->comment }} </p>
+                                                                <p class="mb-10" style="color: black">{{ $item->comment }} </p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -381,6 +285,7 @@
                                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                                                     <div class="row">
+                                                        <div>
                                                         <table class="table" style=" width: 60%;">
                                                             <thead>
                                                                 <tr>
@@ -394,8 +299,6 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    
-                                                                    
                                                                     <td class="cell-level">Quality</td>
                                                                     <td><input type="radio" name="quality" class="radio-sm"
                                                                             value="1"></td>
@@ -410,6 +313,7 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
+                                                        </div>
                                                         <div class="col-12">
                                                             <div class="form-group">
                                                                 <textarea class="form-control w-100" required name="comment" id="comment"
@@ -446,11 +350,7 @@
                                                         <img class="default-img" src="{{ asset($product->product_thambnail) }}" alt="" />
                                                     </a>
                                                 </div>
-                                                <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html" tabindex="0"><i class="fi-rs-shuffle"></i></a>
-                                                </div>
+                                               
 
                                                 @php
                                                     $amount = $product->selling_price - $product->discount_price;
@@ -510,6 +410,8 @@
                                                         <span class="old-price">{{$product->selling_price}}JD</span>
                                                     </div>
                                                 @endif
+
+                                                
                                             </div>
                                         </div>
                                     </div>

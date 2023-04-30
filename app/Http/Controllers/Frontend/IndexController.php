@@ -133,5 +133,13 @@ class IndexController extends Controller
         $newProduct = Product::orderBy('id','DESC')->limit(3)->get();
         return view('frontend.product.search',compact('products','item','categories','newProduct'));
 
-    }// End Method 
+    }// End Method
+    
+    
+
+    public function AboutPage() {
+        $user = Auth::user();
+        return view('frontend.page.page_aboutus',compact('user'));
+
+    }
 }

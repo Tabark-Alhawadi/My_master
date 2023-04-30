@@ -18,6 +18,7 @@
      {{-- Toaster --}}
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
+
 </head>
 
 <body>
@@ -35,15 +36,15 @@
                 </div>
             </div>
         </div>
-        <div class="page-content pt-150 pb-150">
+        <div class="page-content pt-90 pb-150" >
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
-                        <div class="row">
-                            <div class="col-lg-6 pr-30 d-none d-lg-block">
+                    <div class="col-xl-8 col-lg-10 col-md-12 m-auto"  >
+                        <div class="row" >
+                            {{-- <div class="col-lg-6 pr-30 d-none d-lg-block">
                                 <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/login-1.png')}}" alt="" />
-                            </div>
-                            <div class="col-lg-6 col-md-8">
+                            </div> --}}
+                            <div class="col-lg-11 col-md-8 p-5 ms-5" style="border: 2px solid #8067A9 ; border-radius:10px ">
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
@@ -62,15 +63,15 @@
                                            
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
-                                                    <div class="custome-checkbox">
+                                                    {{-- <div class="custome-checkbox">
                                                         <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
                                                         <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <a class="text-muted" href="{{ route('password.request') }}">Forgot password?</a>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Log in</button>
+                                                <button type="submit" class="btn btn-heading btn-block hover-up" name="login"  style="background: linear-gradient(to left, #8067A9, #24012f);">Log in</button>
                                             </div>
                                         </form>
                                     </div>

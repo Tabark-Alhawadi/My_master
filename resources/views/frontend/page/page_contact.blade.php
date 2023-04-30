@@ -27,7 +27,7 @@
                     <section class="mb-50">
                         
                         <div class="row">
-                            <div class="col-xl-8">
+                            <div class="col-xl-6">
                                 <div class="contact-from-area padding-20-row-col">
                                     <h2 class="mb-10">Stay Connected</h2>
                                     <h5 class="text-brand mb-10">WE'D LOVE TO HEAR FROM YOU</h5>
@@ -82,14 +82,15 @@
                                                     <textarea name="message" placeholder="Message"></textarea>
                                                 </div>
                                                 <button class="submit submit-auto-width" type="submit">Send message</button>
+                                                
                                             </div>
                                         </div>
                                     </form>
-                                    {{-- <p class="form-messege"></p> --}}
+                      
                                 </div>
                             </div>
-                            <div class="col-lg-4 pl-50 d-lg-block d-none">
-                                <img class="border-radius-15 mt-50" src="{{asset('frontend/img/contact.png')}}" alt="" />
+                            <div class="col-lg-6 pl-50 d-lg-block d-none">
+                                <img style="border: 2px solid #24012f; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;" class="border-radius-15 mt-150" src="{{ asset('frontend/assets/imgs/contact/contact.jpg')}}" alt="" />
                             </div>
                         </div>
                     </section>

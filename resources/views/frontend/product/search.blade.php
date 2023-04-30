@@ -25,7 +25,7 @@
         <div class="col-lg-4-5">
             <div class="shop-product-fillter">
                 <div class="totall-product" style="padding-left: 20px">
-                    <p>We found <strong class="text-brand">{{ count($products) }}</strong> items for you!</p>
+                    <p>We found <strong class="text-brand">{{ count($products) }}</strong> Services for you!</p>
                 </div>
                
             </div>
@@ -51,7 +51,7 @@
 
                             <div class="product-badges product-badges-position product-badges-mrg">
 
-                                @if($product->offer== NULL)
+                                @if($product->discount_price == NULL)
                                 <span class="new">New</span>
                                 @else
                                 <span class="hot"> {{ round($discount) }} %</span>
@@ -138,7 +138,7 @@
             <!-- Fillter By Price -->
 
             <!-- Product sidebar Widget -->
-            <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
+            {{-- <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                 <h5 class="section-title style-1 mb-30">New products</h5>
 
                 @foreach ($newProduct as $product)
@@ -152,15 +152,15 @@
                         </p>
 
                         @if ($product->discount_price == NULL)
-                        <p class="price mb-0 mt-5">${{$product->selling_price}}</p>
+                        <p class="price mb-0 mt-5">{{$product->selling_price}}JD</p>
                         @else
-                        <p class="price mb-0 mt-5">${{$product->discount_price}}</p>
+                        <p class="price mb-0 mt-5">{{$product->discount_price}}JD</p>
                         @endif
                     </div>
                 </div>
                 @endforeach
 
-            </div>
+            </div> --}}
 
         </div>
 

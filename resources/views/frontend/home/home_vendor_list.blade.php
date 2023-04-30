@@ -53,7 +53,7 @@
                             </div>
                             <div class="vendor-info mb-30">
                                 <ul class="contact-infor text-muted">
-                                    <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Address:</strong><span>{{ $vendor->address }}</span></li>
+                                    <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address:</strong><span>{{ $vendor->address }}</span></li>
                                     
                                     <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Call Us:</strong><span>{{ $vendor->phone }}</span></li>
                                 </ul>

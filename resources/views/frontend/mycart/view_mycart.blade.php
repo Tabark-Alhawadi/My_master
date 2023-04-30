@@ -44,10 +44,10 @@
                                     </td>
                                     <td class="price" data-title="Price">
                                         @if ($cart['product']['discount_price'] == NULL)
-                                            <h6 class="text-body">${{$cart['product']['selling_price']}}</h6>
+                                            <h6 class="text-body">{{$cart['product']['selling_price']}}JD</h6>
                                             
                                         @else
-                                            <h6 class="text-body">${{$cart['product']['discount_price']}}</h6>
+                                            <h6 class="text-body">{{$cart['product']['discount_price']}}JD</h6>
                                         @endif
                                     </td>
                                    
@@ -85,7 +85,7 @@
                                 <div class="text-muted">Order Summary</div>
                                 <div class="text-body text-end" id="GrandTotal">
                                     <div style="font-size: 12px;">Total</div>
-                                    <div>${{$AllTotal}}</div>
+                                    <div>{{$AllTotal}}JD</div>
                                     
                                 </div>
                                         

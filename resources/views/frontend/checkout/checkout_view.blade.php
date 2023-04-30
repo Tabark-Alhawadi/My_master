@@ -87,7 +87,7 @@
                                                     class="text-heading ">{{$cart['product']['product_name']}}</a></h6></span>
                                             <div class="product-rate-cover">
 
-                                                @if ($cart->color !== NULL)
+                                                {{-- @if ($cart->color !== NULL)
                                                     <strong>{{$cart->color}}</strong>
                                                 @else
                                                     <strong></strong>
@@ -99,7 +99,7 @@
                                                     <strong> {{$cart->size}}</strong>
                                                 @else
                                                     <strong></strong>
-                                                @endif
+                                                @endif --}}
                                             </div>
                                         </td>
                                         <td>
@@ -108,11 +108,11 @@
 
                                         @if ($cart['product']['discount_price'] == NULL)
                                             <td>
-                                                <h4 class="text-brand">${{$cart['product']['selling_price']}}</h4>
+                                                <h4 class="text-brand">{{$cart['product']['selling_price']}}JD</h4>
                                             </td>
                                         @else
                                             <td>
-                                                <h4 class="text-brand">${{$cart['product']['discount_price']}}</h4>
+                                                <h4 class="text-brand">{{$cart['product']['discount_price']}}JD</h4>
                                             </td>
                                         @endif
 
@@ -130,7 +130,7 @@
                                         <h6 class="text-muted">Grand Total</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">${{$AllTotal}}</h4>
+                                        <h4 class="text-brand text-end">{{$AllTotal}}JD</h4>
                                         <input type="hidden" value="{{$AllTotal}}" name="amount">
                                     </td>
                                 </tr>

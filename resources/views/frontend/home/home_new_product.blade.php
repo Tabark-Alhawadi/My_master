@@ -37,11 +37,7 @@
                                         <img class="default-img" src="{{ asset($product->product_thambnail) }}" alt="" />
                                     </a>
                                 </div>
-                                <div class="product-action-1">
-                                    <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                    <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                    <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                                </div>
+                              
 
                                 @php
                                     $amount = $product->selling_price - $product->discount_price;
@@ -95,9 +91,9 @@
                                 </div>
                                 <div>
                                     @if ($product->vendor_id == NULL)
-                                      <span class="font-small text-muted">By <a href="vendor-details-1.html">Owner</a></span>                    
+                                      <span class="font-small text-muted">By <a href="">Owner</a></span>                    
                                         @else
-                                      <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
+                                      <span class="font-small text-muted">By <a href="">{{ $product['vendor']['name'] }}</a></span>
                                     @endif
                                    
                                 </div>
@@ -114,9 +110,12 @@
                                     </div>    
                                     @endif
                                     
+                                    <form action="{{url('/cart/data/store/'.$product->id)}}" method="POST">
+                                        @csrf
                                     <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        <button class="add" ><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +134,7 @@
             <div class="tab-pane fade" id="category{{$category->id}}" role="tabpanel" aria-labelledby="tab-two">
                 <div class="row product-grid-4">
                     @php
-                        $catWiseProduct = App\Models\Product::where('category_id',$category->id)->orderBy('id','DESC')->get();
+                        $catWiseProduct = App\Models\Product::where('category_id',$category->id)->orderBy('id','DESC')->limit(10)->get();
                     @endphp
                     
                     @forelse ($catWiseProduct as $product)
@@ -147,11 +146,7 @@
                                             <img class="default-img" src="{{asset($product->product_thambnail)}} " alt="" />
                                         </a>
                                     </div>
-                                    <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                        <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                        <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                                    </div>
+                                   
                                     
                                     @php
                                         $amount = $product->selling_price - $product->discount_price;
@@ -184,25 +179,28 @@
                                         
                                         @if ($product->discount_price == NULL)
                                             <div class="product-price">
-                                                <span>${{$product->selling_price}}</span>
+                                                <span>{{$product->selling_price}}JD</span>
                                             </div>
                                         @else
                                             <div class="product-price">
-                                                <span>${{$product->discount_price}}</span>
-                                                <span class="old-price">${{$product->selling_price}}</span>
+                                                <span>{{$product->discount_price}}JD</span>
+                                                <span class="old-price">{{$product->selling_price}}JD</span>
                                             </div>
                                         @endif
 
-                                        
+                                        <form action="{{url('/cart/data/store/'.$product->id)}}" method="POST">
+                                            @csrf
                                         <div class="add-cart">
-                                            <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                            <button class="add" ><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>  
                     @empty
-                        <h5 class="text-danger">No Product Found</h5>
+                        <h4 class="text-danger">No Product Found</h4>
+                        <br>
                     @endforelse
                         <!--end product card-->
                 </div>
@@ -215,3 +213,5 @@
     <!--End tab-content-->
 </div>
 </section>
+<br>
+<br>

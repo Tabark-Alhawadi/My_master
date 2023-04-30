@@ -47,7 +47,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="sort-by-cover">
+                    {{-- <div class="sort-by-cover">
                         <div class="sort-by-product-wrap">
                             <div class="sort-by">
                                 <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
@@ -65,7 +65,7 @@
                                 <li><a href="#">Avg. Rating</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="row product-grid">
@@ -79,11 +79,7 @@
                                         <img class="default-img" src="{{asset($product->product_thambnail)}}" alt="" />
                                     </a>
                                 </div>
-                                <div class="product-action-1">
-                                    <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                    <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                    <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                                </div>
+                               
                                 
                                 @php
                                     $amount = $product->selling_price - $product->discount_price;
@@ -105,15 +101,35 @@
                                 </div>
                                 <h2><a href="{{url('product/details/'.$product->id.'/'.$product->product_slug)}}">{{$product->product_name}}</a></h2>
                                 <div class="product-rate-cover">
+                                    @php
+            
+                                    $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+            
+                                    $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                    @endphp
+                                    
+            
                                     <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
+                                        @if($avarage == 0)
+                                        
+                                        @elseif($avarage == 1 || $avarage < 2)                     
+                                        <div class="product-rating" style="width: 20%"></div>
+                                        @elseif($avarage == 2 || $avarage < 3)                     
+                                        <div class="product-rating" style="width: 40%"></div>
+                                        @elseif($avarage == 3 || $avarage < 4)                     
+                                        <div class="product-rating" style="width: 60%"></div>
+                                        @elseif($avarage == 4 || $avarage < 5)                     
+                                        <div class="product-rating" style="width: 80%"></div>
+                                        @elseif($avarage == 5 || $avarage < 5)                     
+                                        <div class="product-rating" style="width: 100%"></div>
+                                        @endif
                                     </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    <span class="font-small ml-5 text-muted"> ({{ count($reviewcount)}} reviews)</span>
                                 </div>
                                 @if ($product->vendor_id == NULL)
-                                    <h6 >By <span class="text-danger">Owner</span></h6>                    
+                                    <h6 >By <span class="text-brand">Owner</span></h6>                    
                                       @else
-                                    <h6 >By <span class="text-danger">{{ $product['vendor']['name'] }}</span></h6>
+                                    <h6 >By <span class="text-brand">{{ $product['vendor']['name'] }}</span></h6>
                                   @endif
                                 <div class="product-card-bottom">
 
@@ -128,9 +144,12 @@
                                         </div>
                                     @endif
 
+                                    <form action="{{url('/cart/data/store/'.$product->id)}}" method="POST">
+                                        @csrf
                                     <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        <a class="add" ><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +159,7 @@
                 <!--end product card-->
             </div>
             <!--product grid-->
-            <div class="pagination-area mt-20 mb-20">
+            {{-- <div class="pagination-area mt-20 mb-20">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-start">
                         <li class="page-item">
@@ -156,7 +175,7 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div> --}}
             
             <!--End Deals-->
 
@@ -169,7 +188,7 @@
                 <ul>
                     @foreach ($categories as $category)
                         <li>
-                            <a href="shop-grid-right.html"> <img src="{{asset($category->category_image)}}" alt="" />{{$category->category_name}}</a>
+                            <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"> <img src="{{asset($category->category_image)}}" alt="" />{{$category->category_name}}</a>
                             
                             @php
                                 $products = App\Models\Product::where('category_id',$category->id)->get();
@@ -183,7 +202,7 @@
             <!-- Fillter By Price -->
            
             <!-- Product sidebar Widget -->
-            <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
+            {{-- <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                 <h5 class="section-title style-1 mb-30">New Services</h5>
 
                 @foreach ($newProduct as $product)
@@ -209,7 +228,7 @@
                     </div>
                 @endforeach
                
-            </div>
+            </div> --}}
             
         </div>
     </div>

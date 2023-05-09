@@ -18,6 +18,7 @@ use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Frontend\ContactController; 
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\VendorOrderController;
 
 
 
@@ -91,6 +92,21 @@ Route::post('/vendor/update/password',[VendorController::class, 'VendorUpdatePas
         Route::get('/venodr/product/active/{id}','VendorProductActive')->name('vendor.product.active');
         Route::get('/vendor/delete/product/{id}','VendorDeleteProduct')->name('vendor.delete.product');
 
+    
+    });
+
+
+    Route::controller(VendorOrderController::class)->group(function(){
+        
+        Route::get('vendor/pending/order','VendorPendingOrder')->name('vendor.pending.order');
+
+        Route::get('/vendor/order/details/{order_id}','VendorOrderDetails')->name('vendor.order.details');
+
+        Route::get('/vendor/delivered/order' , 'VendorDeliveredOrder')->name('vendor.delivered.order');
+
+        Route::get('vendor/processing/delivered/{order_id}' , 'VendorProcessToDelivered')->name('vendor.processing-delivered');
+
+        Route::get('/vendor/invoice/download/{order_id}' , 'VendorInvoiceDownload')->name('vendor.invoice.download');
     
     });
 
@@ -272,6 +288,8 @@ Route::controller(IndexController::class)->group(function(){
     Route::post('/store/contact','StoreContact')->name('store.contact');
 
     Route::post('/search' , 'ProductSearch')->name('product.search'); 
+
+    // Route::post('/search' , 'ProductSearch')->name('product.search'); 
 
     Route::get('/about/us/page','AboutPage')->name('about.us.page');
 

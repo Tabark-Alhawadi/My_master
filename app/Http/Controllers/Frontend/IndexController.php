@@ -84,7 +84,7 @@ class IndexController extends Controller
         $user = Auth::user();
         return view('frontend.page.page_contact',compact('user'));
 
-    }
+    }// End Method
 
     public function StoreContact(Request $request) {
         if (Auth::id()) {
@@ -120,7 +120,7 @@ class IndexController extends Controller
         return redirect()->back()->with($notification);
     
     
-    }
+    }// End Method
 
 
     public function ProductSearch(Request $request){
@@ -141,5 +141,5 @@ class IndexController extends Controller
         $user = Auth::user();
         return view('frontend.page.page_aboutus',compact('user'));
 
-    }
+    }// End Method
 }

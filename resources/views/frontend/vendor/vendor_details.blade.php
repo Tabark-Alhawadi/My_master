@@ -146,9 +146,19 @@
                                 </div>    
                                 @endif
                                 
+                                <form action="{{url('/cart/data/store/'.$product->id)}}" method="POST">
+                                    @csrf
+                                    
+                                @if($product->vendor_id == NULL)
+                                        <input name="admin_id" type="hidden" value="1">   
+                                @else       
+                                        <input name="vendor_id" type="hidden" value="{{ $product->vendor_id}}">                           
+                                        <input name="admin_id" type="hidden" value="0">
+                                @endif
                                 <div class="add-cart">
-                                    <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                    <button class="add" style="border-color: #dfd0f1" ><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -160,7 +170,7 @@
 
                            </div>
             <!--product grid-->
-            <div class="pagination-area mt-20 mb-20">
+            {{-- <div class="pagination-area mt-20 mb-20">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-start">
                         <li class="page-item">
@@ -176,7 +186,7 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div> --}}
          
             <!--End Deals-->
         </div>
@@ -199,7 +209,7 @@
                     <div class="vendor-des mb-30">
                         <p class="font-sm text-heading">{{ $vendor->vendor_short_info }}</p>
                     </div>
-                    <div class="follow-social mb-20">
+                    {{-- <div class="follow-social mb-20">
                         <h6 class="mb-15">Follow Us</h6>
                         <ul class="social-network">
                             <li class="hover-up">
@@ -223,13 +233,13 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <div class="vendor-info">
                         <ul class="font-sm mb-20">
                             <li><img class="mr-5" src="assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span>{{ $vendor->address }}</span></li>
                             <li><img class="mr-5" src="assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Call Us:</strong><span>{{ $vendor->phone }}</span></li>
                         </ul>
-                        <a href="vendor-details-1.html" class="btn btn-xs">Contact Seller <i class="fi-rs-arrow-small-right"></i></a>
+                        <a href="#" class="btn btn-xs">Contact Seller <i class="fi-rs-arrow-small-right"></i></a>
                     </div>
                 </div>
             </div>

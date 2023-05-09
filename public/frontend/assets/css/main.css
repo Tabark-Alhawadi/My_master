@@ -1145,8 +1145,7 @@ button.submit:hover, button[type='submit']:hover {
 }
 
 .btn:hover, .button:hover {
-  background-color: #dfd0f1;
-  color: #000;
+  background-color: #24012f;
 }
 
 .btn.btn-sm, .button.btn-sm {

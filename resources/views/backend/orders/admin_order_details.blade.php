@@ -52,10 +52,10 @@
 
 
 
-                        <tr>
+                        {{-- <tr>
                             <th>Post Code :</th>
                             <th>{{ $order->post_code }}</th>
-                        </tr>
+                        </tr> --}}
 
                         <tr>
                             <th>Order Date :</th>
@@ -98,7 +98,7 @@
 
                         <tr>
                             <th>Order Amonut:</th>
-                            <th>${{ $order->amount }}</th>
+                            <th>{{ $order->amount }}JD</th>
                         </tr>
 
                         <tr>
@@ -159,7 +159,9 @@
                                 </td>
 
                             </tr>
-
+                            @php
+                            $AllTotal = 0;
+                        @endphp
 
                             @foreach($orderItem as $item)
                             <tr>
@@ -185,16 +187,39 @@
                                 </td>
                                
 
-                              
+                                @if ($item->product->discount_price == NULL)
+                                <td class="col-md-2">
+                                        <span>{{$item->product->selling_price}}JD</span>
+                                    </td>
+                                @else
+                                <td class="col-md-2">
+                                        <span>{{$item->product->discount_price}}JD</span>             
+                                    </td>
+                                @endif
                                
 
-                                <td class="col-md-3">
-                                    <label>${{ $item->price }} <br> Total = ${{ $item->price * $item->qty }} </label>
-                                </td>
+                                
 
+                                @php
+                                if ($item['product']['discount_price'] == NULL) {
+                          
+                                    $selling_price = $item['product']['selling_price'];
+                                    $total = $selling_price;
+                                    $AllTotal +=$total;
+                          
+                                }else {
+                                    $discount_price = $item['product']['discount_price'];
+                                    $total = $discount_price; 
+                                    $AllTotal +=$total;
+                          
+                                }
+                            @endphp
                             </tr>
                             @endforeach
-
+                          <td class="col-md-3">
+                                    {{-- <label>{{ $item->price }}JD<br> Total = {{ $item->price * $item->qty }}JD </label> --}}
+                                    <label><span >Total:</span> <h4>{{ $item->price }} JD </h4></label>
+                                </td>
                         </tbody>
                     </table>
 

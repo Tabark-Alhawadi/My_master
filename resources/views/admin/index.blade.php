@@ -94,7 +94,7 @@
 
 
       <div class="card radius-10">
-        <div class="card-body">
+        {{-- <div class="card-body">
             <div class="d-flex align-items-center">
                 <div>
                     <h5 class="mb-0">Orders Summary</h5>
@@ -288,7 +288,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 </div>

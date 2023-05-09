@@ -148,8 +148,14 @@
 
                                     <form action="{{url('/cart/data/store/'.$product->id)}}" method="POST">
                                         @csrf
+                                        @if($product->vendor_id == NULL)
+                                        <input name="admin_id" type="hidden" value="1">   
+                                   @else       
+                                        <input name="vendor_id" type="hidden" value="{{ $product->vendor_id}}">                           
+                                        <input name="admin_id" type="hidden" value="0">
+                                   @endif
                                     <div class="add-cart">
-                                        <a class="add" ><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                        <button class="add" style="border-color: #dfd0f1"><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
                                     </div>
                                     </form>
                                 </div>

@@ -8,23 +8,23 @@
             </div>
         </div>
     </div>
-    <div class="container mb-80 mt-50">
+    <div class="container mb-80 mt-20">
         <div class="row">
-            <div class="col-lg-8 mb-40">
-                <h4 class="heading-2 mb-10">Your Cart</h4>
+            <div class="col-lg-8 mb-40 m-5">
+                <h3 class="heading-2 mb-10">Your Cart</h3>
                 <div class="d-flex justify-content-between">
-                    <h6 class="text-body">There are products in your cart</h6>
+                    <h6 class="text-body">There are Services in your cart</h6>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-11 m-auto">
                 <div class="table-responsive shopping-summery container containe">
                     <table class="table table-wishlist">
                         <thead>
                             <tr class="main-heading">
                                 
-                                <th scope="col" colspan="2">Product</th>
+                                <th scope="col" colspan="2" class="start"><pre>                Service</pre></th>
                                 <th scope="col">Price</th>
                                 <th scope="col" class="end">Remove</th>
                             </tr>
@@ -34,10 +34,12 @@
                                 $AllTotal = 0;
                             @endphp
                             @foreach ($carts as $cart)
+
+
                                 <tr class="pt-30">
                                     
                                     <td class="image product-thumbnail pt-40">
-                                        <img src="{{asset($cart['product']['product_thambnail'])}}" alt="#">
+                                        <img class="mx-5" src="{{asset($cart['product']['product_thambnail'])}}" alt="#">
                                     </td>
                                     <td class="product-des product-name">
                                         <h6 class="mb-5 long-paragraph"><a class="product-name mb-10 text-heading" href="{{url('product/details/'.$cart['product']['id'].'/'.$cart['product']['product_slug'])}}">{{$cart['product']['product_name']}}</a></h6>
@@ -71,7 +73,7 @@
 
                                     
                                     <td class="action text-center" data-title="Remove">
-                                        <a href="{{route('delete.cart',$cart->id)}}" class="text-body"><i class="fi-rs-trash"></i></a>
+                                        <a href="{{route('delete.cart',$cart->id)}}" class="text-body "><i class="fi-rs-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

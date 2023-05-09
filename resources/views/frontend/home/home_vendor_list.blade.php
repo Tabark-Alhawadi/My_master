@@ -1,13 +1,13 @@
 @php
-    $vendors = App\Models\User::where('status','active')->where('role','vendor')->orderBy('id','DESC')->limit(8)->get();
+    $vendors = App\Models\User::where('status','active')->where('role','vendor')->orderBy('id','DESC')->limit(4)->get();
 @endphp
 
 <div class="container">
 
     <div class="section-title wow animate__animated animate__fadeIn" data-wow-delay="0">
-                <h3 class="">All Our Vendor List </h3>
+                <h3 class="">All Our freelancers List </h3>
                 <a class="show-all" href="{{ route('vendor.all')}}">
-                    All Vendors
+                    All freelancers
                     <i class="fi-rs-angle-right"></i>
                 </a>
             </div>
@@ -25,10 +25,7 @@
                                 <a href="vendor-details-1.html">
                                     <img class="default-img" src="{{ (!empty($vendor->photo)) ? url('upload/vendor_images/'.$vendor->photo):url('upload/no_image.jpg')}}" style="width: 120px;height:120px;" alt="" />
                                 </a>
-                            </div>
-                            <div class="product-badges product-badges-position product-badges-mrg">
-                                <span class="hot">Mall</span>
-                            </div>
+                            </div>                 
                         </div>
                         <div class="vendor-content-wrap">
                             <div class="d-flex justify-content-between align-items-end mb-30">

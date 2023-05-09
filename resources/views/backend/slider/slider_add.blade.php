@@ -64,7 +64,7 @@
                                     <h6 class="mb-0">Slider Image</h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
-                                    <input type="file" name="slider_image" class="form-control" id="image" required=""/>
+                                    <input type="file" name="slider_image" class="form-control" id="image" required="" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/webp"/>
                                 </div>
                             </div>
 

@@ -7,23 +7,23 @@
     <div class="container">
         <div class="breadcrumb">
             <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-            <span></span> Vendors List
+            <span></span> Freelancers List
         </div>
     </div>
 </div>
 <div class="page-content pt-50">
     <div class="container">
         <div class="archive-header-2 text-center">
-            <h1 class="display-2 mb-50">Vendors List</h1>
+            <h1 class="display-2 mb-50">Freelancers List</h1>
             <div class="row">
                 <div class="col-lg-5 mx-auto">
                     <div class="sidebar-widget-2 widget_search mb-50">
-                        <div class="search-form">
+                        {{-- <div class="search-form">
                             <form action="#">
                                 <input type="text" placeholder="Search vendors (by name or ID)..." />
                                 <button type="submit"><i class="fi-rs-search"></i></button>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
             <div class="col-12 col-lg-8 mx-auto">
                 <div class="shop-product-fillter">
                     <div class="totall-product">
-                        <p>We have <strong class="text-brand">{{count($vendors)}}</strong> vendors now</p>
+                        <p>We have <strong class="text-brand">{{count($vendors)}}</strong> freelancers now</p>
                     </div>
                     <div class="sort-by-product-area">
                         <div class="sort-by-cover mr-10">
@@ -54,7 +54,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="sort-by-cover">
+                        {{-- <div class="sort-by-cover">
                             <div class="sort-by-product-wrap">
                                 <div class="sort-by">
                                     <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
@@ -72,7 +72,7 @@
                                     <li><a href="#">Avg. Rating</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -92,9 +92,7 @@
                                     <img class="default-img" src="{{ (!empty($vendor->photo)) ? url('upload/vendor_images/'.$vendor->photo):url('upload/no_image.jpg')}}" style="width: 120px;height:120px;" alt="" />
                                 </a>
                             </div>
-                            <div class="product-badges product-badges-position product-badges-mrg">
-                                <span class="hot">Mall</span>
-                            </div>
+
                         </div>
                         <div class="vendor-content-wrap">
                             <div class="d-flex justify-content-between align-items-end mb-30">
@@ -133,7 +131,7 @@
 
            
         </div>
-        <div class="pagination-area mt-20 mb-20">
+        {{-- <div class="pagination-area mt-20 mb-20">
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-start">
                     <li class="page-item">
@@ -149,7 +147,7 @@
                     </li>
                 </ul>
             </nav>
-        </div>
+        </div> --}}
     </div>
 </div>
 

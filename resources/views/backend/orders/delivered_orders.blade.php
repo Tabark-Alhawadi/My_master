@@ -32,8 +32,7 @@
 				<th>Sl</th>
 				<th>Date </th>
 				<th>Invoice </th>
-				<th>Amount </th>
-				<th>Payment </th>
+				{{-- <th>Amount </th> --}}
 				<th>State </th>
 				<th>Action</th> 
 			</tr>
@@ -44,8 +43,7 @@
 				<td> {{ $key+1 }} </td>
 				<td>{{ $item->order_date }}</td>
 				<td>{{ $item->invoice_no }}</td>
-				<td>${{ $item->amount }}</td>
-				<td>{{ $item->payment_method }}</td>
+				{{-- <td>{{ $item->amount }}JD</td> --}}
                 <td> <span class="badge rounded-pill bg-success"> {{ $item->status }}</span></td> 
 				
 				<td>
@@ -63,8 +61,7 @@
 				<th>Sl</th>
 				<th>Date </th>
 				<th>Invoice </th>
-				<th>Amount </th>
-				<th>Payment </th>
+				{{-- <th>Amount </th> --}}
 				<th>State </th>
 				<th>Action</th> 
 			</tr>

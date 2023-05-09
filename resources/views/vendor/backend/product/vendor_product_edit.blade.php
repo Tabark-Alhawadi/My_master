@@ -156,7 +156,7 @@
     <div class="card-body">
         <div class="mb-3">
             <label for="formFile" class="form-label">Chose Thambnail Image</label>
-            <input name="product_thambnail" class="form-control" type="file" id="formFile">
+            <input name="product_thambnail" class="form-control" type="file" id="formFile" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/webp">
         </div>      
 
         <div class="mb-3">
@@ -195,7 +195,7 @@
                         <tr>
                             <th scope="row">{{ $key+1 }}</th>
                             <td><img src="{{ asset($img->photo_name)}}" style="width:90px; height:90px;" alt=""></td>
-                            <td><input class="form-group" type="file" name="multi_img[{{$img->id}}]" id="multiImg"></td>
+                            <td><input class="form-group" type="file" name="multi_img[{{$img->id}}]" id="multiImg" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/webp"></td>
                             <td>
                                 <button type="submit" class="btn btn-primary px-4">Update Image</button>
                                 <a href="{{route('vendor.product.multiImg.delete',$img->id)}}" id="delete" class="btn btn-danger" title="Delete">Delete</a>

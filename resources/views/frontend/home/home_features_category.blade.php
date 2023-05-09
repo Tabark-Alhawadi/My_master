@@ -18,7 +18,7 @@
                         <figure class="img-hover-scale overflow-hidden">
                             <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"><img src="{{asset($category->category_image)}}" style="height: 90px; width:100px;" alt="" /></a>
                         </figure>
-                        <h6><a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{$category->category_name}}</a></h6>
+                        <h6><a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{$category->category_name}}</a><i class="fi-rs-arrow-small-right"></i></h6>
 
                         @php
                             $products = App\Models\Product::where('category_id',$category->id)->get();

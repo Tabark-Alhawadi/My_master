@@ -64,7 +64,7 @@
 
                   <div class="form-group mb-3">
                     <label for="inputProductTitle" class="form-label">Main Thambnail</label>
-                    <input name="product_thambnail" class="form-control" type="file" id="formFile" onChange="mainThamUrl(this)">
+                    <input name="product_thambnail" class="form-control" type="file" id="formFile" onChange="mainThamUrl(this)" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/webp">
 
                     <img src="" id="mainThmb"/>
                   </div>
@@ -72,7 +72,7 @@
 
                   <div class="form-group mb-3">
                     <label for="inputProductTitle" class="form-label">Multiple Image</label>
-                    <input name="multi_img[]" class="form-control" type="file" id="multiImg" multiple="">
+                    <input name="multi_img[]" class="form-control" type="file" id="multiImg" multiple="" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/webp">
 
                     <div class="row" id="preview_img"></div>
                   </div>

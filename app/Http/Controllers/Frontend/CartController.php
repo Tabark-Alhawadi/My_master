@@ -22,6 +22,18 @@ class CartController extends Controller
 
         $product = Product::findOrFail($id);
 
+        if($request->vendor_id){
+            Cart::insert([
+                'product_id' => $product->id,
+    
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'phone' => $user->phone,
+                'address' => $user->address,
+                'vendor_id' => $request->vendor_id,
+                'admin_id' => $request->admin_id,
+            ]);
+        }else{
         Cart::insert([
             'product_id' => $product->id,
 
@@ -29,7 +41,9 @@ class CartController extends Controller
             'name' => $user->name,
             'phone' => $user->phone,
             'address' => $user->address,
+            'admin_id' => $request->admin_id,
         ]);
+        }
 
         $notification = array(
             'message' => 'Add to Cart Successfully',

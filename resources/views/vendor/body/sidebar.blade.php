@@ -50,12 +50,12 @@ $status = $vendorId->status;
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
-                <div class="menu-title">All Order</div>
+                <div class="menu-title">Order Manage</div>
             </a>
             <ul>
-                <li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>Email</a>
+                <li> <a href="{{route('vendor.pending.order')}}"><i class="bx bx-right-arrow-alt"></i>Pending Order</a>
                 </li>
-                <li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>Chat Box</a>
+                <li> <a href="{{ route('vendor.delivered.order') }}"><i class="bx bx-right-arrow-alt"></i>Delivered Order</a>
                 </li>
             </ul>
         </li>
@@ -67,13 +67,7 @@ $status = $vendorId->status;
  @endif
         
    
-        <li>
-            <a href=" " target="_blank">
-                <div class="parent-icon"><i class="bx bx-support"></i>
-                </div>
-                <div class="menu-title">Support</div>
-            </a>
-        </li>
+       
     </ul>
     <!--end navigation-->
 </div>

@@ -210,7 +210,7 @@
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label>User Photo <span class="required">*</span></label>
-                                                    <input  class="form-control" name="photo" type="file" id="image">
+                                                    <input  class="form-control" name="photo" type="file" id="image" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/webp">
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label> <span class="required">*</span></label>

@@ -28,12 +28,12 @@
     }
     .authority h5 {
         margin-top: -10px;
-        color: green;
+        color: #8067A9;
         /*text-align: center;*/
         margin-left: 35px;
     }
     .thanks p {
-        color: green;;
+        color: #8067A9;;
         font-size: 16px;
         font-weight: normal;
         font-family: serif;
@@ -48,16 +48,15 @@
     <tr>
         <td valign="top">
           <!-- {{-- <img src="" alt="" width="150"/> --}} -->
-          <h2 style="color: green; font-size: 26px;"><strong>EasyShop</strong></h2>
+          <h2 style="color: #8067A9; font-size: 26px;"><strong>Borderless Solutions</strong></h2>
         </td>
         <td align="right">
-            <pre class="font" >
-               EasyShop Head Office
-               Email:support@easylearningbd.com <br>
-               Mob: 1245454545 <br>
-               Dhaka 1207,Dhanmondi:#4 <br>
-              
-            </pre>
+          <pre class="font" >
+            Borderless Solutions Head Office
+             Email:BorderlessSo@gmail.com <br>
+             Mob: 1245454545 <br>
+             Aqaba, Jordan 
+          </pre>
         </td>
     </tr>
 
@@ -78,12 +77,11 @@
             // $state = $order->state->state_name; 
             @endphp
            <strong>Address:</strong> {{ $order->adress }}<br>
-           <strong>Post Code:</strong> {{ $order->post_code }}
          </p>
         </td>
         <td>
           <p class="font">
-            <h3><span style="color: green;">Invoice:</span> #{{ $order->invoice_no }}</h3>
+            <h3><span style="color: #8067A9;">Invoice:</span> #{{ $order->invoice_no }}</h3>
             Order Date: {{ $order->order_date }} <br>
              {{-- Delivery Date: {{ $order->delivered_date }} <br> --}}
             {{-- Payment Type : {{ $order->payment_method }} </span> --}}
@@ -96,17 +94,19 @@
 
 
   <table width="100%">
-    <thead style="background-color: green; color:#FFFFFF;">
+    <thead style="background-color: #8067A9; color:#FFFFFF;">
       <tr class="font">
         <th>Image</th>
         <th>Product Name</th>     
         <th>Code</th>
         <th>Vendor</th>
-        <th>Total </th>
+        <th>price </th>
       </tr>
     </thead>
     <tbody>
-
+      @php
+      $AllTotal = 0;
+  @endphp
      @foreach($orderItem as $item)
       <tr class="font">
         <td align="center">
@@ -119,13 +119,35 @@
 
 
          @if($item->vendor_id == NULL)
-         <td align="center">Owner</td>
+         <td align="center">BS Team</td>
           @else
           <td align="center">{{ $item->product->vendor->name }}</td>
           @endif
         
-        <td align="center">${{ $item->price }}</td>
+          @if ($item->product->discount_price == NULL)
+          <td class="col-md-2">
+                  <span>{{$item->product->selling_price}}JD</span>
+              </td>
+          @else
+          <td class="col-md-2">
+                  <span>{{$item->product->discount_price}}JD</span>             
+              </td>
+          @endif
       </tr>
+      @php
+      if ($item['product']['discount_price'] == NULL) {
+
+          $selling_price = $item['product']['selling_price'];
+          $total = $selling_price;
+          $AllTotal +=$total;
+
+      }else {
+          $discount_price = $item['product']['discount_price'];
+          $total = $discount_price; 
+          $AllTotal +=$total;
+
+      }
+  @endphp
       @endforeach
     </tbody>
   </table>
@@ -133,14 +155,15 @@
   <table width="100%" style=" padding:0 10px 0 10px;">
     <tr>
         <td align="right" >
-            <h2><span style="color: green;">Subtotal:</span>${{ $order->amount }}</h2>
-            <h2><span style="color: green;">Total:</span> ${{ $order->amount }}</h2>
-            {{-- <h2><span style="color: green;">Full Payment PAID</h2> --}}
+            {{-- <h2><span style="color: #8067A9;">Subtotal:</span>{{ $order->amount }}JD</h2>
+            <h2> {{ $order->amount }}JD</h2> --}}
+            <label><span style="color: #8067A9;">Total:</span> <h4>{{ $item->price }} JD </h4></label>
+            {{-- <h2><span style="color: #8067A9;">Full Payment PAID</h2> --}}
         </td>
     </tr>
   </table>
   <div class="thanks mt-3">
-    <p>Thanks For Buying Products..!!</p>
+    <p>Thanks You..!!</p>
   </div>
   <div class="authority float-right mt-5">
       <p>-----------------------------------</p>

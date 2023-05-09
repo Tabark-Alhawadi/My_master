@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Freelance web</title>
+    <title>Borderless Solutions</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,11 +12,13 @@
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
     <!-- Favicon -->
-    {{-- <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/BS4.jpg')}}" /> --}}
-    <link rel="icon" type="image/png" href="{{ asset('frontend/assets/imgs/theme/BS4.png')}}"/>
+
+    <link rel="icon" type="image/png" href="{{ asset('frontend/assets/imgs/theme/logo2.png')}}"/>
     <!-- Template CSS --> 
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css')}}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -148,7 +150,7 @@
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="text-center">
-                    <img src="assets/imgs/theme/loading.gif" alt="" />
+                    <img src="{{ asset('frontend/assets/imgs/theme/loading2.gif')}}" alt="" />
                 </div>
             </div>
         </div>

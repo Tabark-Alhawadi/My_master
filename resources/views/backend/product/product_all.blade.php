@@ -51,19 +51,19 @@
                        
                         <tr>
                             <td>{{ $key+1 }}</td> 
-                            <td><img src="{{ asset($item->product_thamnail) }}" style="width: 70px; height:40px;"> </td>
+                            <td><img src="{{ asset($item->product_thambnail) }}" style="width: 70px; height:40px;"> </td>
                             <td>{{ $item->product_name }}</td>
                             <td>{{ $item->selling_price }}</td>
                             <td>{{ $item->product_qty }}</td>
-
+                            @php
+                            $amount = $item->selling_price - $item->discount_price;
+                            $discount = ($amount/$item->selling_price) * 100;   
+                       @endphp         
                             <td>
                                 @if($item->discount_price == NULL)
                                         <span class="badge rounded-pill bg-info">No Discount</span>  
                                 @else
-                                   @php
-                                        $amount = $item->selling_price - $item->discount_price;
-                                        $discount = ($amount/$item->selling_price) * 100;   
-                                   @endphp         
+                                  
                                         <span class="badge rounded-pill bg-danger">{{ round($discount) }}%</span>                                
                                 @endif
                             </td>

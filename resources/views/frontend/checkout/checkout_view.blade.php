@@ -10,12 +10,12 @@
         </div>
     </div>
 </div>
-<div class="container mb-80 mt-50 containe">
+<div class="container mb-80 mt-30 containe">
     <div class="row">
-        <div class="col-lg-8 mb-40">
+        <div class="col-lg-8 mb-40 m-5">
             <h3 class="heading-2 mb-10">Checkout</h3>
             <div class="d-flex justify-content-between">
-                <h6 class="text-body">There are products in your cart</h6>
+                <h6 class="text-body">There are Services in your cart</h6>
             </div>
         </div>
     </div>
@@ -23,8 +23,10 @@
     <form method="post" action="{{route('stripe.order')}}">
         @csrf
 
+   
+
         <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-6 m-5">
 
                 <div class="row">
                     <h4 class="mb-30">Billing Details</h4>
@@ -45,10 +47,7 @@
                         <div class="form-group col-lg-6">
                             <input required="" type="text" name="shipping_phone" value="{{Auth::user()->phone}}" >
                         </div>
-                    
-                        <div class="form-group col-lg-6">
-                            <input required="" type="text" name="post_code" placeholder="Post Code *">
-                        </div>
+    
                     </div>
 
 
@@ -86,25 +85,9 @@
                                             <h6 class="w-160 mb-5 long-paragraph"><a href="{{url('product/details/'.$cart['product']['id'].'/'.$cart['product']['product_slug'])}}"
                                                     class="text-heading ">{{$cart['product']['product_name']}}</a></h6></span>
                                             <div class="product-rate-cover">
-
-                                                {{-- @if ($cart->color !== NULL)
-                                                    <strong>{{$cart->color}}</strong>
-                                                @else
-                                                    <strong></strong>
-                                                @endif
-                                                @if ($cart->color && $cart->size)
-                                                    <strong> /</strong>
-                                                @endif
-                                                @if ($cart->size !== NULL)
-                                                    <strong> {{$cart->size}}</strong>
-                                                @else
-                                                    <strong></strong>
-                                                @endif --}}
                                             </div>
                                         </td>
-                                        <td>
-                                            <h6 class="text-muted pl-20 pr-20">x {{$cart->quantity}}</h6>
-                                        </td>
+                               
 
                                         @if ($cart['product']['discount_price'] == NULL)
                                             <td>
@@ -116,6 +99,12 @@
                                             </td>
                                         @endif
 
+                                    @if($cart->vendor_id == NULL)
+                                        <input name="admin_id" type="hidden" value="{{ $cart->admin_id}}">   
+                                    @else       
+                                        <input name="vendor_id" type="hidden" value="{{ $cart->vendor_id}}">                           
+                                        <input name="admin_id" type="hidden" value="{{ $cart->admin_id}}">
+                                    @endif
                                     
                                     </tr>
                                 @endforeach

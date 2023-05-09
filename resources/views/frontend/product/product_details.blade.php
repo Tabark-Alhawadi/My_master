@@ -1,6 +1,85 @@
+
 @extends('frontend.master_dashboard')
 
 @section('main')
+
+
+
+
+<style>
+    div.stars {
+
+width: 270px;
+
+display: inline-block;
+
+}
+
+.mt-200{
+   margin-top:200px;  
+}
+
+input.star { display: none; }
+
+
+
+label.star {
+
+float: right;
+
+padding: 10px;
+
+font-size: 36px;
+
+color: #4A148C;
+
+transition: all .2s;
+
+}
+
+
+
+input.star:checked ~ label.star:before {
+
+content: '\f005';
+
+color: #FD4;
+
+transition: all .25s;
+
+}
+
+
+input.star-5:checked ~ label.star:before {
+
+color: #FE7;
+
+text-shadow: 0 0 20px #952;
+
+}
+
+
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+  
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+
+
+label.star:before {
+
+content: '\f006';
+
+font-family: FontAwesome;
+
+}
+</style>
+
+
+
+
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -109,6 +188,13 @@
                                
                         <form action="{{url('/cart/data/store/'.$product->id)}}" method="POST">
                             @csrf
+
+                            @if($product->vendor_id == NULL)
+                                 <input name="admin_id" type="hidden" value="1">   
+                            @else       
+                                 <input name="vendor_id" type="hidden" value="{{ $product->vendor_id}}">                           
+                                 <input name="admin_id" type="hidden" value="0">
+                            @endif
                                 <div class="detail-extralink mb-50">
                                     
                                     <div class="product-extra-link2">
@@ -148,7 +234,7 @@
                                 </li>
                                
                                 <li class="nav-item">
-                                    <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
+                                    <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">freelancer</a>
                                 </li>
                                 @php
                                 $reviews = App\Models\Review::where('product_id',$product->id)->latest()->limit(5)->get();
@@ -190,12 +276,12 @@
                                     @if ($product->vendor_id == NULL)
                                       <ul class="contact-infor mb-50">
                                           <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address: </strong> <span>Null</span></li>
-                                          <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Contact Seller:</strong><span>Admin</span></li>
+                                          <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Contact freelancer:</strong><span>Admin</span></li>
                                       </ul>
                                     @else                                    
                                       <ul class="contact-infor mb-50">
                                           <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address: </strong> <span>{{$product['vendor']['address']}}</span></li>
-                                          <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Contact Seller:</strong><span>{{$product['vendor']['phone']}}</span></li>
+                                          <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Contact freelancer:</strong><span>{{$product['vendor']['phone']}}</span></li>
                                       </ul>
                                     @endif
 
@@ -285,35 +371,38 @@
                                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                                                     <div class="row">
-                                                        <div>
                                                         <table class="table" style=" width: 60%;">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="cell-level">&nbsp;</th>
-                                                                    <th>1 star</th>
-                                                                    <th>2 star</th>
-                                                                    <th>3 star</th>
-                                                                    <th>4 star</th>
-                                                                    <th>5 star</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td class="cell-level">Quality</td>
-                                                                    <td><input type="radio" name="quality" class="radio-sm"
-                                                                            value="1"></td>
-                                                                    <td><input type="radio" name="quality" class="radio-sm"
-                                                                            value="2"></td>
-                                                                    <td><input type="radio" name="quality" class="radio-sm"
-                                                                            value="3"></td>
-                                                                    <td><input type="radio" name="quality" class="radio-sm"
-                                                                            value="4"></td>
-                                                                    <td><input type="radio" name="quality" class="radio-sm"
-                                                                            value="5"></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                        <div class="col-md-12">
+                                                
+                                                            <div class="stars">
+                                                
+                                                
+                                                                    <input class="star star-5 radio-sm" id="star-5" type="radio" value="5" name="quality" />
+                                                
+                                                                    <label class="star star-5 radio-sm" for="star-5"></label>
+                                                
+                                                                    <input class="star star-4 radio-sm" id="star-4" type="radio" value="4" name="quality" />
+                                                
+                                                                    <label class="star star-4 radio-sm" for="star-4"></label>
+                                                
+                                                                    <input class="star star-3 radio-sm" id="star-3" type="radio" value="3" name="quality" />
+                                                
+                                                                    <label class="star star-3 radio-sm" for="star-3"></label>
+                                                
+                                                                    <input class="star star-2 radio-sm" id="star-2" type="radio" value="2" name="quality" />
+                                                
+                                                                    <label class="star star-2 radio-sm" for="star-2"></label>
+                                                
+                                                                    <input class="star star-1 radio-sm" id="star-1" type="radio" value="1" name="quality" />
+                                                
+                                                                    <label class="star star-1 radio-sm" for="star-1"></label>
+                                                
+                                                            </div>
+                                                
+                                                
+                                                
                                                         </div>
+                                                    </table>
                                                         <div class="col-12">
                                                             <div class="form-group">
                                                                 <textarea class="form-control w-100" required name="comment" id="comment"

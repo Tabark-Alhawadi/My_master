@@ -9,8 +9,8 @@
                 <div class="col">
                     <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0 wow animate__animated animate__fadeInUp" data-wow-delay="0">
                         <div class="logo mb-30">
-                            <a href="index.html" class="mb-15"><img src="{{ asset('frontend/assets/imgs/theme/BS4.png')}}" alt="logo" /></a>
-                            <p class="font-lg text-heading"> Spectacular Freelance Service For Your Business</p>
+                            <a href="index.html" class="mb-15"><img src="{{ asset('frontend/assets/imgs/theme/logo.png')}}" style="width:70%" alt="logo" /></a>
+                            <p class="font-lg text-heading"> Spectacular freelance Services Marketplace website</p>
                         </div>
                         <ul class="contact-infor">
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address: </strong> <span>Aqaba ,Jordan</span></li>
@@ -23,10 +23,10 @@
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                     <h4 class=" widget-title">Company</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
+                        <li><a href="{{ route('about.us.page') }}">About Us</a></li>
+                        {{-- <li><a href="#">Delivery Information</a></li> --}}
                         <li><a href="{{ route('user.contact.page') }}">Contact Us</a></li>
-                        <li><a href="#">Support Center</a></li>
+                        {{-- <li><a href="#">Support Center</a></li> --}}
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".2s">

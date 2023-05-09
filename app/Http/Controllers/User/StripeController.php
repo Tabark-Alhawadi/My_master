@@ -15,14 +15,13 @@ class StripeController extends Controller
     public function StripeOrder(Request $request){
         $user_id = Auth::user()->id;
         
-
-        $order_id = Order::insertGetId([
+        if($request->notes){
+             $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'name' => $request->shipping_name,
             'email' => $request->shipping_email,
             'phone' => $request->shipping_phone,
             'adress' => $request->shipping_address,
-            'post_code' => $request->post_code,
             'notes' => $request->notes,
 
             'amount' => $request->amount,
@@ -36,7 +35,35 @@ class StripeController extends Controller
             'status' => 'pending',
             'created_at' => Carbon::now(),  
 
+            'vendor_id' => $request->vendor_id,
+            'admin_id' => $request->admin_id,
+
         ]);
+        }else{
+            $order_id = Order::insertGetId([
+                'user_id' => Auth::id(),
+                'name' => $request->shipping_name,
+                'email' => $request->shipping_email,
+                'phone' => $request->shipping_phone,
+                'adress' => $request->shipping_address,
+    
+                'amount' => $request->amount,
+                
+                'order_number' => 1,
+    
+                'invoice_no' => 'EOS'.mt_rand(10000000,99999999),
+                'order_date' => Carbon::now()->format('d F Y'),
+                'order_month' => Carbon::now()->format('F'),
+                'order_year' => Carbon::now()->format('Y'), 
+                'status' => 'pending',
+                'created_at' => Carbon::now(),  
+
+                'vendor_id' => $request->vendor_id,
+                'admin_id' => $request->admin_id,
+            ]);
+        }
+
+       
 
         $carts = Cart::where('user_id',$user_id)->get();
         foreach($carts as $cart){
@@ -46,6 +73,8 @@ class StripeController extends Controller
                 'product_id' => $cart->product_id,
                 'price' => $request->amount,
                 'created_at' =>Carbon::now(),
+                'vendor_id' => $request->vendor_id,
+                'admin_id' => $request->admin_id,
 
             ]);
 

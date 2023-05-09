@@ -13,7 +13,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/imgs/theme/BS4.png')}}" alt="logo" /></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.png')}}" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -159,12 +159,12 @@
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/imgs/theme/BS4.png')}}" alt="logo" /></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.png')}}" alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
                         <a class="categories-button-active" href="#">
-                            <span class="fi-rs-apps"></span>   All Categories
+                               All Categories
                             <i class="fi-rs-angle-down"></i>
                         </a>
                         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
@@ -202,13 +202,13 @@
                             <ul>
                                 
                                 <li>
-                                    <a class="active" href="index.html">Home  </a>
+                                    <a class="active" href="{{ route('home') }}">Home  </a>
                                     
                                 </li>
 
                                 @php
 
-                                $categories = App\Models\Category::orderBy('category_name','ASC')->limit(6)->get();
+                                $categories = App\Models\Category::orderBy('category_name','ASC')->limit(5)->get();
                           
                               @endphp
 
@@ -246,10 +246,10 @@
                 </div>
 
 
-                <div class="hotline d-none d-lg-flex">
-                    <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg')}}" alt="hotline" />
-                    <p>0778080926<span>24/7 Support Center</span></p>
-                </div>
+                {{-- <div class="hotline d-none d-lg-flex">
+                    
+                
+                </div> --}}
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
                         <span class="burger-icon-top"></span>
@@ -349,7 +349,7 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/imgs/theme/BS4.png')}}" alt="logo" /></a>
+                <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.png')}}" alt="logo" /></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">
@@ -378,7 +378,7 @@
             </div>
             <div class="mobile-header-info-wrap">
                 <div class="single-mobile-header-info">
-                    <a href="page-contact.html"><i class="fi-rs-marker"></i> Our location </a>
+                    <a href="#"><i class="fi-rs-marker"></i> Our location </a>
                 </div>
                 <div class="single-mobile-header-info">
                     <a href="{{route ('login') }}"><i class="fi-rs-user"></i>Log In / Sign Up </a>

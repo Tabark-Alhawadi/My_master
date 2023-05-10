@@ -1,4 +1,4 @@
-@extends('dashboard')
+{{-- @extends('dashboard')
 
 
 @section('user')
@@ -27,8 +27,8 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="dashboard-menu">
-                            <ul class="nav flex-column" role="tablist">
-                                <li class="nav-item">
+                            <ul class="nav flex-column" role="tablist"> --}}
+                                {{-- <li class="nav-item">
                                     <a class="nav-link {{ ($route ==  'dashboard')? 'active':  '' }} "   href="{{route('dashboard')}}" ><i class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
                                 </li>
                                 <li class="nav-item">
@@ -39,17 +39,17 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link {{ ($route ==  'reply.message.page')? 'active':  '' }} "   href="{{route('reply.message.page')}}"  ><i class="fi-rs-user mr-10"></i>Reply Message</a>
-                                </li>
-                                <li class="nav-item">
+                                </li> --}}
+                                {{-- <li class="nav-item">
                                     <a class="nav-link {{ ($route ==  'user.account.page')? 'active':  '' }} "   href="{{route('user.account.page')}}"  ><i class="fi-rs-user mr-10"></i>Account details</a>
-                                </li>
-                                <li class="nav-item">
+                                </li> --}}
+                                {{-- <li class="nav-item">
                                     <a class="nav-link {{ ($route ==  'user.change.password')? 'active':  '' }} "  href="{{route('user.change.password')}}"  ><i class="fi-rs-user mr-10"></i>Change Password</a>
-                                </li>
-                                <li class="nav-item">
+                                </li> --}}
+                                {{-- <li class="nav-item">
                                     <a class="nav-link "  href="{{route('user.logout')}}"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
-                                </li>
-                            </ul>
+                                </li> --}}
+                            {{-- </ul>
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -76,4 +76,4 @@
     });
 </script>
 
-@endsection
+@endsection --}}

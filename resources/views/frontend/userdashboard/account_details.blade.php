@@ -1,6 +1,6 @@
 @extends('min_dashboard')
 
-@section('UserDach')
+@section('user')
 
     <div class="card">
         <div class="card-header">

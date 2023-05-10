@@ -41,9 +41,7 @@
                 <div class="row">
                     <div class="col-xl-8 col-lg-10 col-md-12 m-auto"  >
                         <div class="row" >
-                            {{-- <div class="col-lg-6 pr-30 d-none d-lg-block">
-                                <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/login-1.png')}}" alt="" />
-                            </div> --}}
+                          
                             <div class="col-lg-11 col-md-8 p-5 ms-5" style="border: 2px solid #8067A9 ; border-radius:10px ">
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
@@ -55,7 +53,7 @@
                                             @csrf
                                     
                                             <div class="form-group">
-                                                <input id="email" type="email" required="" name="email" placeholder="Username or Email *" />
+                                                <input id="email" type="email" required="" name="email" placeholder="Your Email *" />
                                             </div>
                                             <div class="form-group">
                                                 <input id="password" required="" type="password" name="password" placeholder="Your password *" />

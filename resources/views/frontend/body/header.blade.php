@@ -116,9 +116,9 @@
                                         <li>
                                             <a href="{{ route('dashboard') }}"><i class="fi fi-rs-user mr-10"></i>My Account</a>
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <a href="{{ route('dashboard') }}"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <a href="{{ route('dashboard') }}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                         </li>
@@ -161,43 +161,9 @@
                 <div class="logo logo-width-1 d-block d-lg-none">
                     <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.png')}}" alt="logo" /></a>
                 </div>
-                <div class="header-nav d-none d-lg-flex">
-                    <div class="main-categori-wrap d-none d-lg-block">
-                        <a class="categories-button-active" href="#">
-                               All Categories
-                            <i class="fi-rs-angle-down"></i>
-                        </a>
-                        <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
-                            <div class="d-flex categori-dropdown-inner">
-                                <ul>
-                                    @foreach ($categories as $category) 
-                                    <li>
-                                        <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"> <img src="{{ asset( $category->category_image ) }}" alt="" />{{ $category->category_name }}</a>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                                <ul class="end">
-                                    @foreach ($categories as $category) 
-                                    <li>
-                                        <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"> <img src="{{ asset( $category->category_image ) }}" alt="" />{{ $category->category_name }}</a>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div class="more_slide_open" style="display: none">
-                                <div class="d-flex categori-dropdown-inner">
-                                    <ul>
-                                     
-                                    </ul>
-                                    <ul class="end">
-                                       
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1"></span></div>
-                        </div>
-                    </div>
-                    <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
+                <div class="header-nav d-none d-lg-flex mx-4">
+                    
+                    <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading ">
                         <nav>
                             <ul>
                                 
@@ -243,6 +209,41 @@
                             </ul>
                         </nav>
                     </div>
+                    {{-- <div class="main-categori-wrap d-none d-lg-block">
+                        <a class="categories-button-active" href="#">
+                               All Categories
+                            <i class="fi-rs-angle-down"></i>
+                        </a>
+                        <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
+                            <div class="d-flex categori-dropdown-inner">
+                                <ul>
+                                    @foreach ($categories as $category) 
+                                    <li>
+                                        <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"> <img src="{{ asset( $category->category_image ) }}" alt="" />{{ $category->category_name }}</a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                <ul class="end">
+                                    @foreach ($categories as $category) 
+                                    <li>
+                                        <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"> <img src="{{ asset( $category->category_image ) }}" alt="" />{{ $category->category_name }}</a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="more_slide_open" style="display: none">
+                                <div class="d-flex categori-dropdown-inner">
+                                    <ul>
+                                     
+                                    </ul>
+                                    <ul class="end">
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1"></span></div>
+                        </div>
+                    </div> --}}
                 </div>
 
 

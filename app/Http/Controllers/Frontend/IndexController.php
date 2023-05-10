@@ -56,6 +56,8 @@ class IndexController extends Controller
     } // End Method
 
 
+
+
     public function CatWiseProduct(Request $request, $id, $slug) {
         
         $products = Product::where('status',1)->where('category_id',$id)->orderBy('id','DESC')->get();
@@ -78,6 +80,16 @@ class IndexController extends Controller
         return view('frontend.product.subcategory_view',compact('products','categories','breadsubcat','newProduct'));
 
     } // End Method
+
+    public function CategoryAll() {
+        $products = Product::where('status',1)->orderBy('id','DESC')->get();
+        $categories = Category::orderBy('category_name','ASC')->get();
+        $breadcat = Category::first();
+        $newProduct = Product::orderBy('id','DESC')->where('status',1)->limit(3)->get();
+
+        return view('frontend.page.page_shop',compact('products','categories','breadcat','newProduct'));
+
+    }
 
 
     public function ContactPage() {

@@ -1,6 +1,6 @@
-@extends('min_dashboard')
+@extends('dashboard')
 
-@section('UserDach')
+@section('user')
 <div class="card">
     <div class="card-header">
         <h5>Change Password</h5>

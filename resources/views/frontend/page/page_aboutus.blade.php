@@ -645,8 +645,7 @@ a {
           Borderless Solutions
         </p>
         <p class="text-blk description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum pulvinar ullamcorper suspendisse ac eget. Pellentesque tempus leo in ullamcorper quis vestibulum ligula elementum ut.
-        </p>
+          Our website was created with the goal of simplifying the process of finding and hiring freelancers for small businesses, entrepreneurs, and individuals who need specific services. We understand that finding the right freelancer for your project can be a time-consuming and daunting task, which is why we've created a platform that makes the process easy, convenient and secure.        </p>
         <a class="explore" href="{{ route('home')}}">
           View Services
         </a>

@@ -63,10 +63,10 @@
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
                 <div class="mobile-social-icon">
                     <h6>Follow Us</h6>
-                    <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook-white.svg')}}" alt="" /></a>
+                    {{-- <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook-white.svg')}}" alt="" /></a> --}}
                     <a href="https://twitter.com/Tabark_Alhawadi?t=ccyKXkZRNy6o0vS2I4_rIQ&s=09" target="_blank"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-twitter-white.svg')}}" alt="" /></a>
-                    <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-instagram-white.svg')}}" alt="" /></a>
-                    <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg')}}" alt="" /></a>
+                    {{-- <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-instagram-white.svg')}}" alt="" /></a> --}}
+                    {{-- <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg')}}" alt="" /></a> --}}
                 </div>
       
             </div>

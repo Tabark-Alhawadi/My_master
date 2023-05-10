@@ -15,53 +15,42 @@
     
     <div class="row vendor-grid">
 
-        @foreach ($vendors as $vendor)
-            
+
+
        
-                <div class="col-lg-3 col-md-6 col-12 col-sm-6 justify-content-center">
-                    <div class="vendor-wrap mb-40">
-                        <div class="vendor-img-action-wrap">
-                            <div class="vendor-img">
-                                <a href="vendor-details-1.html">
-                                    <img class="default-img" src="{{ (!empty($vendor->photo)) ? url('upload/vendor_images/'.$vendor->photo):url('upload/no_image.jpg')}}" style="width: 120px;height:120px;" alt="" />
-                                </a>
-                            </div>                 
-                        </div>
-                        <div class="vendor-content-wrap">
-                            <div class="d-flex justify-content-between align-items-end mb-30">
-                                <div>
-                                    <div class="product-category">
-                                        <span class="text-muted">Since {{ $vendor->vendor_join }}</span>
-                                    </div>
-                                    <h4 class="mb-5"><a href="{{ route('vendor.details',$vendor->id) }}">{{ $vendor->name }}</a></h4>
-                                    {{-- <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div> --}}
+        <div class="team-boxed"> 
+           
+            <div class="container">
+               
+                <div class="row people">
+                    @foreach ($vendors as $vendor)  
+                    <div class="col-md-6 col-lg-3 item">
+                        <div class="box">  <img class="default-img rounded-circle" src="{{ (!empty($vendor->photo)) ? url('upload/vendor_images/'.$vendor->photo):url('upload/no_image.jpg')}}"  alt="" />
+                            <h4 class="mb-5"><a href="{{ route('vendor.details',$vendor->id) }}">{{ $vendor->name }}</a></h4>
+                            <span class="text-muted">Since {{ $vendor->vendor_join }}</span>
+                        
+                            <div class="mb-10">
+                                @php
+                                           $products = App\Models\Product::where('vendor_id',$vendor->id)->get();
+                                       @endphp
+                                <span class="font-small total-product">{{ count($products)}} services</span>
+                                <div class="vendor-info mb-30">
+                                    <ul class="contact-infor text-dark">
+                                        <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address:</strong><span>{{ $vendor->address }}</span></li>
+                                        
+                                        <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Call Us:</strong><span>{{ $vendor->phone }}</span></li>
+                                    </ul>
                                 </div>
-                                <div class="mb-10">
-                                    @php
-                                               $products = App\Models\Product::where('vendor_id',$vendor->id)->get();
-                                           @endphp
-                                    <span class="font-small total-product">{{ count($products)}} services</span>
-                                </div>                                
-                            </div>
-                            <div class="vendor-info mb-30">
-                                <ul class="contact-infor text-muted">
-                                    <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address:</strong><span>{{ $vendor->address }}</span></li>
-                                    
-                                    <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Call Us:</strong><span>{{ $vendor->phone }}</span></li>
-                                </ul>
-                            </div>
-                            <a href="{{ route('vendor.details',$vendor->id) }}" class="btn btn-xs">View My Services <i class="fi-rs-arrow-small-right"></i></a>
+                                <a href="{{ route('vendor.details',$vendor->id) }}" class="btn btn-xs">View My Services <i class="fi-rs-arrow-small-right"></i></a>
+                            </div>       
                         </div>
                     </div>
+                     @endforeach
                 </div>
-                <!--end vendor card-->
-        @endforeach
-
+                
+            </div>
+           
+        </div>
 
                
             
